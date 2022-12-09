@@ -1618,6 +1618,17 @@ let ConvenieceStoreOptions = {
 var Conveniece_Store_Layer = new L.GeoJSON(convenience_store_data, ConvenieceStoreOptions);
 Conveniece_Store_Layer.addTo(mymap);
 
+var baseMaps = {
+  "OpenStreetMap": osm
+};
+
+var overlayMaps = {
+  "Supermarkets": Supermarkets_Layer,
+  "Convenience Stores": Conveniece_Store_Layer
+};
+
+L.control.layers(baseMaps,overlayMaps).addTo(mymap);
+
 //Παλιός κώδικας από διαφάνειες
 /*var featuresLayer = new L.GeoJSON(data, {
     onEachFeature: function (feature, marker) {
