@@ -1,0 +1,477 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-ide",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2022-12-08T18:06:54Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/598279836",
+        "name": "Papakos",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7622778,
+          38.23553
+        ]
+      },
+      "id": "node/598279836"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/633369803",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7540236,
+          38.2612908
+        ]
+      },
+      "id": "node/633369803"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643713403",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7666723,
+          38.2852364
+        ]
+      },
+      "id": "node/1643713403"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643713405",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7714546,
+          38.2911121
+        ]
+      },
+      "id": "node/1643713405"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643713406",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7666079,
+          38.2913332
+        ]
+      },
+      "id": "node/1643713406"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643818244",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7625472,
+          38.2779126
+        ]
+      },
+      "id": "node/1643818244"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643818267",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7574031,
+          38.2751636
+        ]
+      },
+      "id": "node/1643818267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1643825320",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7883123,
+          38.2945036
+        ]
+      },
+      "id": "node/1643825320"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1657962066",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7854989,
+          38.2991382
+        ]
+      },
+      "id": "node/1657962066"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1695934267",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7712803,
+          38.2915409
+        ]
+      },
+      "id": "node/1695934267"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1771512424",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7593252,
+          38.2657865
+        ]
+      },
+      "id": "node/1771512424"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1971240518",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7399001,
+          38.2377144
+        ]
+      },
+      "id": "node/1971240518"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1997401665",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7689392,
+          38.2803811
+        ]
+      },
+      "id": "node/1997401665"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1997401682",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7646316,
+          38.2767389
+        ]
+      },
+      "id": "node/1997401682"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4357098895",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7339549,
+          38.2438242
+        ]
+      },
+      "id": "node/4357098895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4372108797",
+        "name": "Mini Market",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.8364993,
+          38.2725804
+        ]
+      },
+      "id": "node/4372108797"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4484528391",
+        "addr:street": "Εθνική Οδός 8α",
+        "level": "0",
+        "name": "Carna",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7667136,
+          38.2795377
+        ]
+      },
+      "id": "node/4484528391"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4752810729",
+        "name": "Mini Market",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7770011,
+          38.3052409
+        ]
+      },
+      "id": "node/4752810729"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4953268497",
+        "name": "Φίλιππας",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7504681,
+          38.2585639
+        ]
+      },
+      "id": "node/4953268497"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5005409493",
+        "name": "Kiosk",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.735128,
+          38.2490852
+        ]
+      },
+      "id": "node/5005409493"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5005409494",
+        "name": "Kiosk",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7349115,
+          38.2493169
+        ]
+      },
+      "id": "node/5005409494"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5005409495",
+        "name": "Kiosk",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7344427,
+          38.2489563
+        ]
+      },
+      "id": "node/5005409495"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5005476710",
+        "name": "Kiosk",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7413066,
+          38.2569875
+        ]
+      },
+      "id": "node/5005476710"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5005476711",
+        "name": "Kiosk",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7409531,
+          38.2561434
+        ]
+      },
+      "id": "node/5005476711"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5396345464",
+        "name": "Mini Market",
+        "opening_hours": "Mo-Sa 07:00-22:00",
+        "payment:cash": "yes",
+        "payment:coins": "yes",
+        "payment:credit_cards": "yes",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.8764222,
+          38.3277388
+        ]
+      },
+      "id": "node/5396345464"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5620208927",
+        "name": "Mini Market",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7321204,
+          38.2160259
+        ]
+      },
+      "id": "node/5620208927"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9651304117",
+        "name": "Περίπτερο",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.7408745,
+          38.2554443
+        ]
+      },
+      "id": "node/9651304117"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9785182275",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6232207,
+          38.1494223
+        ]
+      },
+      "id": "node/9785182275"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9785182280",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6206284,
+          38.1477412
+        ]
+      },
+      "id": "node/9785182280"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9785335420",
+        "shop": "convenience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.6454791,
+          38.1563067
+        ]
+      },
+      "id": "node/9785335420"
+    }
+  ]
+}
