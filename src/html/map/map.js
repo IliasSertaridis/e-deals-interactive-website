@@ -1618,6 +1618,22 @@ let ConvenieceStoreOptions = {
 var Conveniece_Store_Layer = new L.GeoJSON(convenience_store_data, ConvenieceStoreOptions);
 Conveniece_Store_Layer.addTo(mymap);
 
+//replace leaflet's blue marker with custom convenience-store icon for convenience-stores
+function Deals_Icon(feature,latlng){
+  let deals_icon = L.icon({
+  iconUrl: 'hot-deal.png',
+  iconSize:     [32, 32], // size of the icon
+  iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
+  popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
+})
+return L.marker(latlng, {icon: deals_icon}).bindPopup("<h4>" + feature.properties.name + "</h4>")
+}
+
+//create an options object which specifies which function is called on each feature
+let DealsOptions = {
+  pointToLayer: Deals_Icon
+}
+
 //base layer for layer control
 var baseMaps = {
   "OpenStreetMap": osm
