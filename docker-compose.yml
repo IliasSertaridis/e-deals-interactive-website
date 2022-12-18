@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: e-deals
+    restart: "no"
+    working_dir: /var/www
+    depends_on: [mysql]
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./config/apache2.conf:/etc/apache2/apache2.conf
+      - ./config/sites-available:/etc/apache2/sites-available
+  mysql:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db-data:/var/lib/mysql
+    #ports:
+    #  - "3306:3306"
+  db-admin:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
