@@ -8,7 +8,6 @@ function route($action, $callback)
 	$action = trim($action, '/');
 	$action = preg_replace('/{[^}]+}/', '(.+)', $action);
 	$routes[$action] = $callback;
-
 }
 
 function dispatch($action)
@@ -19,6 +18,8 @@ function dispatch($action)
 	$params = [];
 	foreach ($routes as $route => $handler)
 	{
+        $action = str_replace('.php', '', $action);
+        $action = str_replace('.html', '', $action);
 		if(preg_match("%^{$route}$%", $action, $matches) === 1)
 		{
 			$callback = $handler;
