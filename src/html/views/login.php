@@ -6,7 +6,7 @@
 <body>
 	<h1><center>Καλωσορίσατε στο E-Deals!</center></h1>
 	<h2>Παρακαλώ συνδεθείτε παρακάτω:</h2>
-	<form name="login_form" method="post" action="/user">
+	<form name="login_form" method="post" action="user">
 		Όνομα Χρήστη: <input type="text" name="username">
 		<br>Κωδικός Πρόσβασης: <input type="password" name="password">
 		<br><input type="submit" value="Σύνδεση">
