@@ -11,7 +11,7 @@ session_start();
 <?php
 if (isset($_SESSION['session_username']))
 {
-    header("Location: /profile");
+    require_once __DIR__.'/profile.html';
 }
 else
 {

@@ -9,12 +9,15 @@ require_once __DIR__.'/router.php';
 // Static GET
 // In the URL -> http://localhost
 // The output -> Index
-get('/', 'views/login.php');
-get('/index', 'views/login.php');
+get('/', 'views/index.php');
+get('/index', 'views/index.php');
 get('/login', 'views/login.php');
-get('/logoff', 'views/logoff.php');
-get('/user', 'views/user.php');
+get('/register', 'views/register.php');
+get('/logout', 'views/logout.php');
+get('/profile', 'views/profile/profile.php');
+get('/submit', 'views/submit/submit.php');
 get('/map', 'views/map/map.php');
+get('/admin', 'views/admin/admin.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
@@ -58,7 +61,7 @@ get('/map', 'views/map/map.php');
 // ##################################################
 // ##################################################
 // Route that will use POST data
-post('/user', 'views/user.php');
+post('/login', 'views/sessionizer.php');
 
 
 
