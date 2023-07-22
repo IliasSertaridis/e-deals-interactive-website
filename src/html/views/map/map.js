@@ -1581,7 +1581,7 @@ L.control.locate().addTo(mymap);
 //replace leaflet's blue marker with custom supermarket icon for supermarkets
 function Supermarket_Icon(feature,latlng){
   let supermarket_icon = L.icon({
-  iconUrl: 'supermarket.png',
+  iconUrl: 'views/map/supermarket.png',
   iconSize:     [32, 32], // size of the icon
   iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
@@ -1601,7 +1601,7 @@ Supermarkets_Layer.addTo(mymap);
 //replace leaflet's blue marker with custom convenience-store icon for convenience-stores
 function Convenience_Store_Icon(feature,latlng){
   let convenience_store_icon = L.icon({
-  iconUrl: 'convenience-store.png',
+  iconUrl: 'views/map/convenience-store.png',
   iconSize:     [32, 32], // size of the icon
   iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
@@ -1621,7 +1621,7 @@ Conveniece_Store_Layer.addTo(mymap);
 //replace leaflet's blue marker with custom convenience-store icon for convenience-stores
 function Deals_Icon(feature,latlng){
   let deals_icon = L.icon({
-  iconUrl: 'hot-deal.png',
+  iconUrl: 'views/map/hot-deal.png',
   iconSize:     [32, 32], // size of the icon
   iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
   popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor

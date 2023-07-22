@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>E-Deals</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <meta charset="utf-8"> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+                <div class="container-fluid">
+                    <img src="favicon-white.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <a class="navbar-brand ms-2" href="/index">
+                        E-Deals
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/map">Deals Map</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/submit">Submit Deal</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/profile">My Profile</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container mt-5">
+                <ul class="nav nav-pills border rounded nav-justified" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="deals-tab" data-bs-toggle="tab" data-bs-target="#deals-tab-pane" type="button" role="pill" aria-controls="deals-tab-pane" aria-selected="true">View Your Deals History</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="likes-tab" data-bs-toggle="tab" data-bs-target="#likes-tab-pane" type="button" role="pill" aria-controls="likes-tab-pane" aria-selected="false">View Likes/Dislikes History</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="score-tab" data-bs-toggle="tab" data-bs-target="#score-tab-pane" type="button" role="pill" aria-controls="score-tab-pane" aria-selected="false">View Score/Token History</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="details-tab" data-bs-toggle="tab" data-bs-target="#details-tab-pane" type="button" role="pill" aria-controls="details-tab-pane" aria-selected="false">Change Account Details</button>
+                    </li>
+                </ul>
+                <div class="tab-content mt-5" id="myTabContent">
+                    <div class="tab-pane fade show active" id="deals-tab-pane" role="tabpanel" aria-labelledby="deals-tab" tabindex="0">
+                        <table class="table table-striped border">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Deal ID</th>
+                                    <th scope="col">Item</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Store</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                    <td>Placeholder</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade mt-5" id="likes-tab-pane" role="tabpanel" aria-labelledby="likes-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="deals-tab-pane" role="tabpanel" aria-labelledby="deals-tab" tabindex="0">
+                            <table class="table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Actor</th>
+                                        <th scope="col">Recipient</th>
+                                        <th scope="col">Deal</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                        <td>Placeholder</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade mt-5" id="score-tab-pane" role="tabpanel" aria-labelledby="score-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="deals-tab-pane" role="tabpanel" aria-labelledby="deals-tab" tabindex="0">
+                            <table class="table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Month's Score</th>
+                                        <th scope="col">Total Score</th>
+                                        <th scope="col">Last Month's Tokens Received</th>
+                                        <th scope="col">Total Tokens Received</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row">Placeholder</td>
+                                        <td scope="row">Placeholder</td>
+                                        <td scope="row">Placeholder</td>
+                                        <td scope="row">Placeholder</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="details-tab-pane" role="tabpanel" aria-labelledby="details-tab" tabindex="0">
+                        <form name="login_form" method="post" action="user">
+                            <div class="mb-3">
+                                <label class="form-label">New Username:</label>
+                                <input name="new-username" type="username" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">New Password:</label>
+                                <input name="new-password" type="password" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Repeat Password:</label>
+                                <input name="repeat-password" type="password" class="form-control">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Old Password:</label>
+                                <input name="old-username" type="password" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>
