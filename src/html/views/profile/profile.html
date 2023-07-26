@@ -17,7 +17,7 @@
         <header>
             <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
                 <div class="container-fluid">
-                    <img src="favicon-white.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="/favicon-white.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     <a class="navbar-brand ms-2" href="/index">
                         E-Deals
                     </a>

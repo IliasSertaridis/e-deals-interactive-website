@@ -18,6 +18,10 @@ get('/profile', 'views/profile/profile.php');
 get('/submit', 'views/submit/submit.php');
 get('/map', 'views/map/map.php');
 get('/admin', 'views/admin/admin.php');
+get('/admin/items', 'views/admin/itemsData/itemsData.php');
+get('/admin/stores', 'views/admin/storesData/storesData.php');
+get('/admin/statistics', 'views/admin/statistics/statistics.php');
+get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
@@ -62,6 +66,8 @@ get('/admin', 'views/admin/admin.php');
 // ##################################################
 // Route that will use POST data
 post('/login', 'views/sessionizer.php');
+post('/admin/upload', 'upload.php');
+post('/admin/delete', 'delete.php');
 
 
 
