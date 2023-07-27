@@ -23,8 +23,8 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - ./db-data:/var/lib/mysql
-    #ports:
-    #  - "3306:3306"
+    ports:
+      - "3306:3306"
   db-admin:
     image: adminer:latest
     ports:
