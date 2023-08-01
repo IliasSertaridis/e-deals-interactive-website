@@ -1,0 +1,5 @@
+The MySQL database is initialized through docker-compose.yml through ./SQL:/docker-entrypoint-initdb.d volume, where every script in that folder is automatically executed on initialization of the cointainer, provided the /var/lib/mysql directory (db-data commented volume) is clear (no prior data in mysql server).
+
+The db-data volume has been commented out to automatically "refresh" the database on startup, maintaining homogeneity in execution environments.
+
+To keep data that is persistent from execution to execution, uncomment the aforementioned db-data volume line in docker-compose.yml
