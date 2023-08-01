@@ -9,6 +9,8 @@ RUN apt-get update && \
 #COPY my-apache-site.conf /etc/apache2/sites-available/my-apache-site.conf
 
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
+    docker-php-ext-install mysqli && \
+    docker-php-ext-enable mysqli && \
     a2enmod rewrite && \
 #    a2dissite 000-default && \
 #    a2ensite my-apache-site && \
