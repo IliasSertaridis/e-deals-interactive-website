@@ -24,10 +24,11 @@ get('/admin/statistics', 'views/admin/statistics/statistics.php');
 get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
 get('/admin/items/delete', 'delete.php');
 get('/admin/stores/delete', 'delete.php');
+get('/test', 'test.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
-#get('/user/$id', 'views/user');
+get('/api/$query', 'api.php');
 
 // Dynamic GET. Example with 2 variables
 // The $name will be available in full_name.php
