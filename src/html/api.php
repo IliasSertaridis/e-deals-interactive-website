@@ -8,8 +8,12 @@ switch($query)
 {
     case "admins":
         DBquery("SELECT SLEEP(3);");
-        print_r(DBquery($admins));
+        $result = DBquery($admins);
+        break;
     default:
-        print_r(json_encode((object) null));
+        $result = json_encode((object) null);
+        break;
 }
+$json = json_encode($result);
+echo $json;
 ?>
