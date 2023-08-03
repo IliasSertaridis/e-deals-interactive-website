@@ -13,8 +13,11 @@ function DBquery($sqlQuery){
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = $sqlQuery;
-    $result = $conn->query($sql);
+    $result = $conn->query($sqlQuery);
+
+    if (gettype($result) == 'boolean') {
+        return $result;
+    }
 
     $rows = mysqli_fetch_all($result);
 

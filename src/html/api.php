@@ -11,7 +11,7 @@ switch($query)
         $result = DBquery($admins);
         break;
     default:
-        $result = json_encode((object) null);
+        $result = (object) null;
         break;
 }
 $json = json_encode($result);
