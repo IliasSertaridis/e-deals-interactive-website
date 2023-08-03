@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
     if (sizeof($jsonData) == 3)
     {
         echo "Uploaded Item / Categories Data File<br>";
-#        print_r($jsonData);
         $categoriesQuery = "INSERT INTO category VALUES";
         $subcategoriesQuery = "INSERT INTO subcategory VALUES";
         $itemsQuery = "INSERT INTO item VALUES";
@@ -45,13 +44,49 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
     else if (sizeof($jsonData) == 2)
     {
         echo "Uploaded Item Price Data File<br>";
+        $todaysQuery = "UPDATE item SET mean_daily_price = (case ";
+        $weeksQuery = "UPDATE item SET mean_weekly_price = (case ";
+        $weeksTrigger = false;
+        $weeksCounter = 0;
+        $weeksPrice = 0;
+#        print_r($jsonData);
+        foreach($jsonData['data'] as $item){
+            foreach(array_reverse($item['prices']) as $price) {
+                if($price['date'] == date("Y-m-d")) {
+                   $todaysQuery = $todaysQuery . "when name = \"" . $item['name'] . "\" then " . $price['price'] . " ";
+                }
+                else if(in_array($price['date'], array(date('Y-m-d',strtotime("-1 days")),date('Y-m-d',strtotime("-2 days")),date('Y-m-d',strtotime("-3 days")),date('Y-m-d',strtotime("-4 days")),date('Y-m-d',strtotime("-5 days")),date('Y-m-d',strtotime("-6 days")),date('Y-m-d',strtotime("-7 days"))))) {
+                    $weeksTrigger = True;
+                    $weeksPrice = $weeksPrice + $price['price'];
+                    $weeksCounter++;
+                }
+                else {
+                    break;
+                }
+            }
+            if($weeksTrigger == True) {
+                $weeksPrice = $weeksPrice / $weeksCounter;
+                $weeksQuery = $weeksQuery . "when name = \"" . $item['name'] . "\" then " . $weeksPrice . " ";
+                $weeksPrice = 0;
+                $weeksCounter = 0;
+                $weeksTrigger = false;
+            }
+        }
+        if ($todaysQuery != "UPDATE item SET mean_daily_price = (case ") {
+            $todaysQuery = $todaysQuery . "end);";
+            DBquery($todaysQuery);
+        }
+        if ($weeksQuery != "UPDATE item SET mean_weekly_price = (case ") {
+            $weeksQuery = $weeksQuery . "end);";
+            DBquery($weeksQuery);
+        }
+        echo $todaysQuery . "</br>";
+        echo $weeksQuery . "</br>";
     }
     else
     {
         echo "Malformed Data File";
     }
-    echo '<pre>';
-    echo sizeof($jsonData) . "<br>";
 }
 else if ($_SERVER['REQUEST_URI'] == "/admin/stores/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "geojson")
 {
