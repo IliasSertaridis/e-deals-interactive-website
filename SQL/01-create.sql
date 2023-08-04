@@ -32,7 +32,7 @@ CREATE TABLE store (
     store_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     coordinates POINT NOT NULL,
-    store_type ENUM('supermarket', 'convenience store') NOT NULL,
+    store_type ENUM('supermarket', 'convenience') NOT NULL,
     PRIMARY KEY(store_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

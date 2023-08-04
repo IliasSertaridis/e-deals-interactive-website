@@ -31,15 +31,17 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
                 $itemsQuery = $itemsQuery . " (\"" . $item['name'] . "\"," . "NULL" . "," . "NULL" . "," . "NULL" . ",\"" . $item['subcategory'] . "\"),";
             }
         }
-        $categoriesQuery = substr_replace($categoriesQuery,";",-1);
-        $subcategoriesQuery = substr_replace($subcategoriesQuery,";",-1);
-        $itemsQuery = substr_replace($itemsQuery,";",-1);
-        DBquery("DELETE FROM category;");
-        DBquery("DELETE FROM subcategory;");
-        DBquery("DELETE FROM item;");
-        DBquery($categoriesQuery);
-        DBquery($subcategoriesQuery);
-        DBquery($itemsQuery);
+        DBQuery("DELETE FROM category;");
+        DBQuery("DELETE FROM subcategory;");
+        DBQuery("DELETE FROM item;");
+        if($categoriesQuery != "INSERT INTO category VALUES" && $subcategoriesQuery != "INSERT INTO subcategory VALUES" && $itemsQuery != "INSERT INTO item VALUES") {
+            $categoriesQuery = substr_replace($categoriesQuery,";",-1);
+            $subcategoriesQuery = substr_replace($subcategoriesQuery,";",-1);
+            $itemsQuery = substr_replace($itemsQuery,";",-1);
+            DBQuery($categoriesQuery);
+            DBQuery($subcategoriesQuery);
+            DBQuery($itemsQuery);
+        }
     }
     else if (sizeof($jsonData) == 2)
     {
@@ -74,11 +76,11 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
         }
         if ($todaysQuery != "UPDATE item SET mean_daily_price = (case ") {
             $todaysQuery = $todaysQuery . "end);";
-            DBquery($todaysQuery);
+            DBQuery($todaysQuery);
         }
         if ($weeksQuery != "UPDATE item SET mean_weekly_price = (case ") {
             $weeksQuery = $weeksQuery . "end);";
-            DBquery($weeksQuery);
+            DBQuery($weeksQuery);
         }
         echo $todaysQuery . "</br>";
         echo $weeksQuery . "</br>";
@@ -98,14 +100,24 @@ else if ($_SERVER['REQUEST_URI'] == "/admin/stores/upload" && strtolower(pathinf
     if (sizeof($jsonData) == 5)
     {
         echo "Uploaded Stores Data File<br>";
+        #echo '<pre>';
+        #print_r($jsonData);
+        $storesQuery = "INSERT INTO store VALUES";
+        foreach($jsonData['features'] as $store) {
+            if (array_key_exists("name",$store['properties']) && array_key_exists("shop",$store['properties']) && array_key_exists("coordinates",$store['geometry'])) {
+                $storesQuery = $storesQuery . " (NULL,'" . $store['properties']['name'] . "',ST_GeomFromText('POINT(" . $store['geometry']['coordinates'][0] . " " . $store['geometry']['coordinates'][1] . ")'),'" . $store['properties']['shop'] . "'),";
+            }
+        }
+        DBQuery("DELETE FROM store;");
+        if ($storesQuery != "INSERT INTO store VALUES") {
+            $storesQuery = substr_replace($storesQuery,";",-1);
+            DBQuery($storesQuery);
+        }
     }
     else 
     {
         echo "Malformed Data File<br>";
     }
-    echo '<pre>';
-    echo sizeof($jsonData) . "<br>";
-    print_r($jsonData);
 }
 else
 {
