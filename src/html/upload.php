@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
         }
         foreach($jsonData['products'] as $item) {
             if(!in_array($item['id'], array(200, 1340))) { //Handling duplicate data from provided file
-                $itemsQuery = $itemsQuery . " (\"" . $item['name'] . "\"," . "NULL" . "," . "NULL" . "," . "NULL" . ",\"" . $item['subcategory'] . "\"),";
+                $itemsQuery = $itemsQuery . " (NULL,\"" . $item['name'] . "\"," . "NULL" .  ",\"" . $item['subcategory'] . "\"),";
             }
         }
         DBQuery("DELETE FROM category;");
@@ -46,44 +46,16 @@ if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FI
     else if (sizeof($jsonData) == 2)
     {
         echo "Uploaded Item Price Data File<br>";
-        $todaysQuery = "UPDATE item SET mean_daily_price = (case ";
-        $weeksQuery = "UPDATE item SET mean_weekly_price = (case ";
-        $weeksTrigger = false;
-        $weeksCounter = 0;
-        $weeksPrice = 0;
-#        print_r($jsonData);
+        $pricesQuery = "INSERT INTO price VALUES";
         foreach($jsonData['data'] as $item){
-            foreach(array_reverse($item['prices']) as $price) {
-                if($price['date'] == date("Y-m-d")) {
-                   $todaysQuery = $todaysQuery . "when name = \"" . $item['name'] . "\" then " . $price['price'] . " ";
-                }
-                else if(in_array($price['date'], array(date('Y-m-d',strtotime("-1 days")),date('Y-m-d',strtotime("-2 days")),date('Y-m-d',strtotime("-3 days")),date('Y-m-d',strtotime("-4 days")),date('Y-m-d',strtotime("-5 days")),date('Y-m-d',strtotime("-6 days")),date('Y-m-d',strtotime("-7 days"))))) {
-                    $weeksTrigger = True;
-                    $weeksPrice = $weeksPrice + $price['price'];
-                    $weeksCounter++;
-                }
-                else {
-                    break;
-                }
-            }
-            if($weeksTrigger == True) {
-                $weeksPrice = $weeksPrice / $weeksCounter;
-                $weeksQuery = $weeksQuery . "when name = \"" . $item['name'] . "\" then " . $weeksPrice . " ";
-                $weeksPrice = 0;
-                $weeksCounter = 0;
-                $weeksTrigger = false;
+            foreach($item['prices'] as $price) {
+                $pricesQuery = $pricesQuery . " ('" . $item['name'] . "','" . $price['date'] . "'," . $price['price'] . "),";
             }
         }
-        if ($todaysQuery != "UPDATE item SET mean_daily_price = (case ") {
-            $todaysQuery = $todaysQuery . "end);";
-            DBQuery($todaysQuery);
+        if ($pricesQuery != "INSERT INTO price VALUES") {
+            $pricesQuery = substr_replace($pricesQuery,";",-1);
+            DBQuery($pricesQuery);
         }
-        if ($weeksQuery != "UPDATE item SET mean_weekly_price = (case ") {
-            $weeksQuery = $weeksQuery . "end);";
-            DBQuery($weeksQuery);
-        }
-        echo $todaysQuery . "</br>";
-        echo $weeksQuery . "</br>";
     }
     else
     {
