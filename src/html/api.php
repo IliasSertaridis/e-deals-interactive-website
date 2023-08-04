@@ -38,7 +38,7 @@ switch($query)
             switch($timeframe)
             { 
                 case 'daily':
-                    $result = DBQuery("SELECT item.item_id, item.name, price.date, price.price FROM item INNER JOIN price AS average_daily_price ON item.name = price.item_name WHERE item.item_id = " . $item . ";");
+                    $result = DBQuery("SELECT item.item_id, item.name, price.date, price.price AS average_daily_price FROM item INNER JOIN price ON item.name = price.item_name WHERE item.item_id = " . $item . ";");
                     $json = json_encode($result, JSON_UNESCAPED_UNICODE);
                     echo $json;
                     break;
