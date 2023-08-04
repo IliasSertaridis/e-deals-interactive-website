@@ -8,63 +8,67 @@ const showAlert = (message, type) => {
   ].join('')
 }
 
-const form = document.getElementById('uploadForm');
 const uploadTrigger = document.getElementById('uploadButton')
 if (uploadTrigger)
 {
     uploadTrigger.addEventListener('click', () => {
-        if(document.getElementById("file").value == "") {
-            showAlert('You must first select a file to upload!', 'danger');
+        //document.getElementById("uploadForm").submit();
+
+        var fd = new FormData();
+        var files = $('#file')[0].files;
+        if (files.length > 0) {
+            fd.append('file',files[0]);
+            $.ajax({
+                url: window.location.href + '/upload',
+                type: "POST",
+                data: fd,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                fail: function() {
+                    showAlert("Failed to connect to database", 'danger');
+                },
+                success: function(response) {
+                    if(response.status == 1) {
+                        showAlert('Item data uploaded successfully!', 'success');
+                    }
+                    else if(response.status == 2) {
+                        showAlert('Price data uploaded successfully!', 'success');
+                    }
+                    else if(response.status == 3) {
+                        showAlert('Store data uploaded successfully!', 'success');
+                    }
+                    else {
+                        showAlert('Data upload failed!', 'danger');
+                    }
+                }
+            });
         }
         else {
-            document.getElementById("uploadForm").submit();
-            
-            /*const url = new URL(form.action);
-            const formData = new FormData(form);
-            const searchParams = new URLSearchParams(formData);
-            const fetchOptions = {
-                method: form.method,
-            };
-            if (form.method.toLowerCase() === 'post') {
-                if (form.enctype === 'multipart/form-data') {
-                    fetchOptions.body = formData;
-                }
-                else {
-                    fetchOptions.body = searchParams;
-                }
-            }
-            else {
-                url.search=searchParams;
-            }
-
-            fetch(url, fetchOptions)
-                .then((response) => response.json)
-                .then((json) => console.log(json))
-                .then(showAlert('Data uploaded successfully!', 'success'));*/
+            showAlert('You must first select a file to upload!', 'danger');
         }
     })
 }
 
-const itemsDeleteTrigger = document.getElementById('itemsDeleteButton')
-if (itemsDeleteTrigger)
+const deleteTrigger = document.getElementById('deleteButton')
+if (deleteTrigger)
 {
-    itemsDeleteTrigger.addEventListener('click', () => {
-        fetch("items/delete", {
-            method: "GET" // default, so we can ignore
-        }).then((response) => response.json)
-            .then((json) => console.log(json))
-            .then(showAlert('Data deleted successfully!', 'success'));
-    })
-}
-
-const storesDeleteTrigger = document.getElementById('storesDeleteButton')
-if (storesDeleteTrigger)
-{
-    storesDeleteTrigger.addEventListener('click', () => {
-        fetch("stores/delete", {
-            method: "GET" // default, so we can ignore
-        }).then((response) => response.json)
-            .then((json) => console.log(json))
-            .then(showAlert('Data deleted successfully!', 'success'));
+    deleteTrigger.addEventListener('click', () => {
+        $.ajax({
+            url: window.location.href + '/delete',
+            type: "GET",
+            fail: function() {
+                showAlert("Failed to connect to database", 'danger');
+            },
+            success: function(responseText) {
+                var response = String(responseText);
+                if(response.trim() === 'SUCCESS') {
+                    showAlert('Data deleted successfully!', 'success');
+                }
+                else {
+                    showAlert('Data deletion failed!', 'danger');
+                }
+            }
+        });
     })
 }
