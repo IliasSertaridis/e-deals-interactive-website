@@ -6,7 +6,6 @@ DROP SCHEMA IF EXISTS edeals;
 CREATE SCHEMA edeals;
 USE edeals;
 
-
 --
 -- Table structure for table `user`
 --
@@ -33,7 +32,7 @@ CREATE TABLE store (
     store_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     coordinates POINT NOT NULL,
-    store_type ENUM('supermarket', 'convenience store') NOT NULL,
+    store_type ENUM('supermarket', 'convenience') NOT NULL,
     PRIMARY KEY(store_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,8 +42,9 @@ CREATE TABLE store (
 
 DROP TABLE IF EXISTS category;
 CREATE TABLE category (
+    uuid VARCHAR(45) NOT NULL,
     name VARCHAR(45) NOT NULL,
-    PRIMARY KEY(name)
+    PRIMARY KEY(uuid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -53,10 +53,11 @@ CREATE TABLE category (
 
 DROP TABLE IF EXISTS subcategory;
 CREATE TABLE subcategory (
+    uuid VARCHAR(45) NOT NULL,
     name VARCHAR(45) NOT NULL,
     belongs_to VARCHAR(45) NOT NULL,
-    PRIMARY KEY (name),
-    CONSTRAINT subcategory_belongs_to FOREIGN KEY(belongs_to) REFERENCES category(name) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT subcategory_belongs_to FOREIGN KEY(belongs_to) REFERENCES category(uuid) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (uuid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -65,13 +66,13 @@ CREATE TABLE subcategory (
 
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
-    name VARCHAR(45) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     photo blob,
-    mean_daily_price float(5,2) NOT NULL,
-    mean_weekly_price float(5,2) NOT NULL,
+    mean_daily_price float(5,2),
+    mean_weekly_price float(5,2),
     belongs_to VARCHAR(45) NOT NULL,
     PRIMARY KEY(name),
-    CONSTRAINT item_belongs_to FOREIGN KEY(belongs_to) REFERENCES subcategory(name) ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT item_belongs_to FOREIGN KEY(belongs_to) REFERENCES subcategory(uuid) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

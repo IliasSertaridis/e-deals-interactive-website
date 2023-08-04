@@ -2,6 +2,7 @@
 require_once __DIR__.'/test.html';
 require_once 'dbquery.php';
 echo "Through PHP " . "</br>";
-$result=DBquery("SELECT * FROM administrator;");
+$result=DBQuery("SELECT * FROM administrator;");
+echo "<pre>";
 var_dump($result);
 ?>
