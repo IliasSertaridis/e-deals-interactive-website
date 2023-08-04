@@ -66,13 +66,26 @@ CREATE TABLE subcategory (
 
 DROP TABLE IF EXISTS item;
 CREATE TABLE item (
+    item_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     photo blob,
-    mean_daily_price float(5,2),
-    mean_weekly_price float(5,2),
     belongs_to VARCHAR(45) NOT NULL,
-    PRIMARY KEY(name),
+    PRIMARY KEY(item_id),
+    UNIQUE(name),
     CONSTRAINT item_belongs_to FOREIGN KEY(belongs_to) REFERENCES subcategory(uuid) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Table structure for table `price`
+--
+
+DROP TABLE IF EXISTS price;
+CREATE TABLE price (
+    item_name VARCHAR(100) NOT NULL,
+    date DATE NOT NULL,
+    price FLOAT(5,2) NOT NULL,
+    CONSTRAINT price_item_name FOREIGN KEY(item_name) REFERENCES item(name) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY(item_name, date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

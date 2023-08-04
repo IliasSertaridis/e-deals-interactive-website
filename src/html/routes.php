@@ -30,6 +30,7 @@ get('/test', 'test.php');
 // The $id will be available in user.php
 get('/api/$query', 'api.php');
 get('/api/$query/$type', 'api.php');
+get('/api/$query/$item/$timeframe', 'api.php');
 
 // Dynamic GET. Example with 2 variables
 // The $name will be available in full_name.php
