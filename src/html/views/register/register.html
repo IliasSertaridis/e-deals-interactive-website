@@ -12,6 +12,7 @@
         <meta charset="utf-8"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -40,22 +41,28 @@
         <main>
             <div class="container">
                 <h1 class="h1 my-3 text-center">Welcome to E-Deals!</h1>
+                <div id="liveAlertPlaceholder"></div>
                 <h2 class="h2">Please register below:</h2>
-                <form name="login_form" method="post" action="user">
+                <!--<form name="login_form" method="post" action="register">-->
                     <div class="mb-3">
                         <label class="form-label">Username:</label>
-                        <input name="username" type="username" class="form-control">
+                        <input name="username" type="username" class="form-control" id="username">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                        <input name="email" type="username" class="form-control" id="email">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Password:</label>
-                        <input name="password" type="password" class="form-control">
+                        <input name="password" type="password" class="form-control" id="password">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Retype Password:</label>
-                        <input name="retype password" type="retype password" class="form-control">
+                        <input name="retype password" type="password" class="form-control" id="retype_password">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Register</button>
-                </form>
+                    <button type="submit" class="btn btn-primary mt-3" id="registerButton">Register</button>
+                <!--</form>-->
+                <script src="../views/register/register.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         </main>
     </body>
