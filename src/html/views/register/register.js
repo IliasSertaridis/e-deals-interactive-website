@@ -54,9 +54,6 @@ if (registerTrigger)
                     showAlert("Failed to connect to database", 'danger');
                 },
                 success: function(response) {
-                    console.log(response);
-                    console.log(response.status);
-                    console.log(response.status == 1);
                     if(response.status == 1) {
                         showAlert('Registration completed successfully!', 'success');
                     }

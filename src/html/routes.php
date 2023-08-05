@@ -70,7 +70,7 @@ get('/api/$query/$item/$timeframe', 'api.php');
 // ##################################################
 // ##################################################
 // Route that will use POST data
-post('/login', 'views/sessionizer.php');
+post('/login', 'views/login/login.php');
 post('/register', 'views/register/register.php');
 post('/admin/items/upload', 'upload.php');
 post('/admin/stores/upload', 'upload.php');
