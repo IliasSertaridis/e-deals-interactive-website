@@ -20,7 +20,7 @@ CREATE TABLE user (
     total_tokens SMALLINT UNSIGNED NOT NULL,
     last_month_tokens SMALLINT UNSIGNED NOT NULL,
     UNIQUE KEY(username),
-    PRIMARY KEY(email, username)
+    PRIMARY KEY(email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

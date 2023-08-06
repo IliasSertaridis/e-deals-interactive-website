@@ -74,6 +74,9 @@ post('/login', 'views/login/login.php');
 post('/register', 'views/register/register.php');
 post('/admin/items/upload', 'upload.php');
 post('/admin/stores/upload', 'upload.php');
+post('/profile/details/verify', 'views/profile/details/verify.php');
+post('/profile/details/change', 'views/profile/details/change.php');
+get('/profile/details/change', 'views/profile/details/change.php');
 
 
 

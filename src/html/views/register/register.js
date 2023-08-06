@@ -33,15 +33,15 @@ if (registerTrigger)
         var username = $("#username").val();
         var email = $("#email").val();
         var password = $("#password").val();
-        var retype_password = $("#retype_password").val();
-        if(username && email && password && retype_password) {
+        var repeat_password = $("#repeat_password").val();
+        if(username && email && password && repeat_password) {
             if(!validateEmail(email)) {
-                showAlert("Email do not have the correct format!", "danger");
+                showAlert("Email does not have the correct format!", "danger");
             }
             else if (!validatePassword(password)) {
                 showAlert("Password must contain at least 8 characters, one number, one special character and one upper case letter!", "danger");
             }
-            else if(password !== retype_password) {
+            else if(password !== repeat_password) {
                 showAlert("Passwords do not match!", "danger");
             }
             else {

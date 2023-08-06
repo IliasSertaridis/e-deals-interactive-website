@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require_once 'dbquery.php';
 
 #echo "Upload: " . $_FILES["file"]["name"] . "<br>";
@@ -11,6 +12,7 @@ $return = array();
 $status = 0;
 
 try {
+    if (isset($_SESSION['username']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'administrator') {
         if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "json")
         {
             move_uploaded_file($_FILES["file"]["tmp_name"],"/tmp/".$_FILES["file"]["name"]);
@@ -97,6 +99,7 @@ try {
             }
         }
     }
+}
 catch (Exception $e) {
     $status = 0;
 }

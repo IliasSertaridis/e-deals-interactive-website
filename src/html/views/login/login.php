@@ -22,17 +22,17 @@ else {
         {
             $status = 0;
         }
-        else if($result[0]['user_type'] == 'user')
+        else 
         {
-            $status = 1;
             $_SESSION['username'] = $_POST['username'];
+            $_SESSION['email'] = $result[0]['email'];
             $_SESSION['user_type'] = $result[0]['user_type'];
-        }
-        else //user_type == administrator
-        {
-            $status = 2;
-            $_SESSION['username'] = $_POST['username'];
-            $_SESSION['user_type'] = $result[0]['user_type'];
+            if($result[0]['user_type'] == 'user') {
+                $status = 1;
+            }
+            else {
+                $status = 2;
+            }
         }
     }
     catch (Exception $e) {
