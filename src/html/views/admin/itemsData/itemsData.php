@@ -9,12 +9,16 @@ session_start();
     </body>
 </html>
 <?php
-if (isset($_SESSION['session_username']))
+if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
 {
-    require_once __DIR__.'/itemsData.html';
+    if ($_SESSION['user_type'] == 'administrator') {
+        require_once __DIR__.'/itemsData.html';
+    }
+    else{
+        header("Location: profile");
+    }
 }
-else
-{
-    header("Location: /login");
+else {
+    header("Location: login");
 }
 ?>

@@ -9,7 +9,7 @@ session_start();
     </body>
 </html>
 <?php
-if (isset($_SESSION['session_username']))
+if (isset($_SESSION['username']))
 {
     header("Location: profile");
 }
@@ -22,7 +22,7 @@ else
     }
     else
     {
-        $_SESSION['session_username'] = $_POST['username'];
+        $_SESSION['username'] = $_POST['username'];
         header("Location: profile");
     }
 }

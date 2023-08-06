@@ -11,8 +11,8 @@ require_once __DIR__.'/router.php';
 // The output -> Index
 get('/', 'views/index.php');
 get('/index', 'views/index.php');
-get('/login', 'views/login.php');
-get('/register', 'views/register.php');
+get('/login', 'views/login/login.php');
+get('/register', 'views/register/register.php');
 get('/logout', 'views/logout.php');
 get('/profile', 'views/profile/profile.php');
 get('/submit', 'views/submit/submit.php');
@@ -70,9 +70,13 @@ get('/api/$query/$item/$timeframe', 'api.php');
 // ##################################################
 // ##################################################
 // Route that will use POST data
-post('/login', 'views/sessionizer.php');
+post('/login', 'views/login/login.php');
+post('/register', 'views/register/register.php');
 post('/admin/items/upload', 'upload.php');
 post('/admin/stores/upload', 'upload.php');
+post('/profile/details/verify', 'views/profile/details/verify.php');
+post('/profile/details/change', 'views/profile/details/change.php');
+get('/profile/details/change', 'views/profile/details/change.php');
 
 
 
