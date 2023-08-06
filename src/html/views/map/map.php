@@ -9,12 +9,11 @@ session_start();
     </body>
 </html>
 <?php
-if (isset($_SESSION['session_username']))
+if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
 {
     require_once __DIR__.'/map.html';
 }
-else
-{
-    header("Location: /login");
+else {
+    header("Location: login");
 }
 ?>
