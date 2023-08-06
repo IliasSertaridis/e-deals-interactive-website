@@ -22,9 +22,9 @@ get('/admin/items', 'views/admin/itemsData/itemsData.php');
 get('/admin/stores', 'views/admin/storesData/storesData.php');
 get('/admin/statistics', 'views/admin/statistics/statistics.php');
 get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
-get('/admin/items/delete', 'delete.php');
-get('/admin/stores/delete', 'delete.php');
-get('/test', 'test.php');
+get('/admin/items/delete', 'views/admin/delete.php');
+get('/admin/stores/delete', 'views/admin/delete.php');
+get('/test', 'views/test.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
@@ -72,11 +72,10 @@ get('/api/$query/$item/$timeframe', 'api.php');
 // Route that will use POST data
 post('/login', 'views/login/login.php');
 post('/register', 'views/register/register.php');
-post('/admin/items/upload', 'upload.php');
-post('/admin/stores/upload', 'upload.php');
+post('/admin/items/upload', 'views/admin/upload.php');
+post('/admin/stores/upload', 'views/admin/upload.php');
 post('/profile/details/verify', 'views/profile/details/verify.php');
 post('/profile/details/change', 'views/profile/details/change.php');
-get('/profile/details/change', 'views/profile/details/change.php');
 
 
 
