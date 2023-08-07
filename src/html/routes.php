@@ -22,15 +22,18 @@ get('/admin/items', 'views/admin/itemsData/itemsData.php');
 get('/admin/stores', 'views/admin/storesData/storesData.php');
 get('/admin/statistics', 'views/admin/statistics/statistics.php');
 get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
-get('/admin/items/delete', 'views/admin/delete.php');
-get('/admin/stores/delete', 'views/admin/delete.php');
 get('/test', 'views/test.php');
+// API
+get('/api/stores', 'api/stores.php');
+get('/api/prices', 'api/prices.php');
+get('/api/admin/items/delete', 'api/admin/delete.php');
+get('/api/admin/stores/delete', 'api/admin/delete.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
-get('/api/$query', 'api.php');
-get('/api/$query/$type', 'api.php');
-get('/api/$query/$item/$timeframe', 'api.php');
+// API
+get('/api/stores/$type', 'api/stores.php');
+get('/api/prices/$item/$timeframe', 'api/prices.php');
 
 // Dynamic GET. Example with 2 variables
 // The $name will be available in full_name.php
@@ -70,12 +73,13 @@ get('/api/$query/$item/$timeframe', 'api.php');
 // ##################################################
 // ##################################################
 // Route that will use POST data
-post('/login', 'views/login/login.php');
-post('/register', 'views/register/register.php');
-post('/admin/items/upload', 'views/admin/upload.php');
-post('/admin/stores/upload', 'views/admin/upload.php');
-post('/profile/details/verify', 'views/profile/details/verify.php');
-post('/profile/details/change', 'views/profile/details/change.php');
+// API
+post('/api/login', 'api/login.php');
+post('/api/register', 'api/register.php');
+post('/api/admin/items/upload', 'api/admin/upload.php');
+post('/api/admin/stores/upload', 'api/admin/upload.php');
+post('/api/profile/details/verify', 'api/profile/details/verify.php');
+post('/api/profile/details/change', 'api/profile/details/change.php');
 
 
 
@@ -87,4 +91,5 @@ post('/profile/details/change', 'views/profile/details/change.php');
 // For GET or POST
 // The 404.php which is inside the views folder will be called
 // The 404.php has access to $_GET and $_POST
+any('/api/404','api/empty.php');
 any('/404','views/404.php');

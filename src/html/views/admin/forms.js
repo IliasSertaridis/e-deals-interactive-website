@@ -19,7 +19,7 @@ if (uploadTrigger)
         if (files.length > 0) {
             fd.append('file',files[0]);
             $.ajax({
-                url: window.location.href + '/upload',
+                url: '/api/admin/' + window.location.href.substring(23) + '/upload',
                 type: "POST",
                 data: fd,
                 dataType: 'json',
@@ -55,7 +55,7 @@ if (deleteTrigger)
 {
     deleteTrigger.addEventListener('click', () => {
         $.ajax({
-            url: window.location.href + '/delete',
+            url: '/api/admin/' + window.location.href.substring(23) + '/delete',
             type: "GET",
             fail: function() {
                 showAlert("Failed to connect to database", 'danger');

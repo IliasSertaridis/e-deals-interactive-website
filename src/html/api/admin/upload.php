@@ -13,7 +13,7 @@ $status = 0;
 
 try {
     if (isset($_SESSION['username']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'administrator') {
-        if ($_SERVER['REQUEST_URI'] == "/admin/items/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "json")
+        if ($_SERVER['REQUEST_URI'] == "/api/admin/items/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "json")
         {
             move_uploaded_file($_FILES["file"]["tmp_name"],"/tmp/".$_FILES["file"]["name"]);
             $path = '/tmp/' . $_FILES["file"]["name"];
@@ -70,7 +70,7 @@ try {
                 }
             }
         }
-        else if ($_SERVER['REQUEST_URI'] == "/admin/stores/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "geojson")
+        else if ($_SERVER['REQUEST_URI'] == "/api/admin/stores/upload" && strtolower(pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION)) == "geojson")
         {
             move_uploaded_file($_FILES["file"]["tmp_name"],"/tmp/".$_FILES["file"]["name"]);
             $path = '/tmp/' . $_FILES["file"]["name"];

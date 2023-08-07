@@ -32,7 +32,7 @@ function applyChanges(new_username, new_password, repeat_password) {
     }
     if(valid) {
         $.ajax({
-            url: '/profile/details/change',
+            url: '/api/profile/details/change',
             type: "POST",
             data: {username:new_username, password:new_password},
             dataType: 'json',
@@ -61,7 +61,7 @@ if (applyTrigger)
         var old_password = $("#old_password").val();
         if((new_username !== '' || new_password !== '' || repeat_password !== '') && old_password !== '') {
             $.ajax({
-                url: '/profile/details/verify',
+                url: '/api/profile/details/verify',
                 type: "POST",
                 data: {password:old_password},
                 dataType: 'json',

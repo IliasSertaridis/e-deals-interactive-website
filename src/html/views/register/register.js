@@ -46,7 +46,7 @@ if (registerTrigger)
             }
             else {
                 $.ajax({
-                url: '/register',
+                url: '/api/register',
                 type: "POST",
                 data: {username:username, email:email, password:password},
                 dataType: 'json',
