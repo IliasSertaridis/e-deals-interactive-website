@@ -19,6 +19,7 @@ CREATE TABLE user (
     total_score SMALLINT UNSIGNED NOT NULL,
     total_tokens SMALLINT UNSIGNED NOT NULL,
     last_month_tokens SMALLINT UNSIGNED NOT NULL,
+    user_type  ENUM('user', 'administrator') NOT NULL,
     UNIQUE KEY(username),
     PRIMARY KEY(email, username)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

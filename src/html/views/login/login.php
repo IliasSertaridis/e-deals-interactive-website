@@ -17,7 +17,7 @@ else {
     $status = 0;
     require_once 'dbquery.php';
     try {
-        $result = DBQuery("SELECT username, email, password, 'user' AS user_type FROM user WHERE username = '" . $_POST['username'] . "' UNION SELECT username, email, password, 'administrator' AS user_type FROM administrator WHERE username = '" . $_POST['username'] . "';");
+        $result = DBQuery("SELECT username, email, password, user_type FROM user WHERE username = '" . $_POST['username'] . "';");
         if (!isset($result[0]['password']) || $result[0]['password'] != $_POST['password'])
         {
             $status = 0;

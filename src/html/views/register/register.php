@@ -9,7 +9,7 @@ else {
     $status = 0;
     try {
         if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
-            if(DBQuery("INSERT INTO user VALUES ('" . $_POST['email'] . "','" . $_POST['username'] . "','" . $_POST['password'] . "',0,0,0,0);")) {
+            if(DBQuery("INSERT INTO user VALUES ('" . $_POST['email'] . "','" . $_POST['username'] . "','" . $_POST['password'] . "',0,0,0,0,'user');")) {
                 $status = 1;
             }
         }

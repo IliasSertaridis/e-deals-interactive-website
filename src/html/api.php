@@ -6,7 +6,7 @@ require_once 'dbquery.php';
 switch($query)
 {
     case "admins":
-        $result = DBQuery("SELECT * FROM administrator;");
+        $result = DBQuery("SELECT * FROM user WHERE user_type = 'administrator';");
         $json = json_encode($result, JSON_UNESCAPED_UNICODE);
         echo $json;
         break;
