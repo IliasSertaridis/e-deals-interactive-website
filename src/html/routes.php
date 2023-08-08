@@ -29,6 +29,7 @@ get('/api/prices', 'api/prices.php');
 get('/api/admin/items/delete', 'api/admin/delete.php');
 get('/api/admin/stores/delete', 'api/admin/delete.php');
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory/dealsHistory.php');
+get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory/reviewsHistory.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php

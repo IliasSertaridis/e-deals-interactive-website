@@ -1,0 +1,4 @@
+views/*.php να δούμε session check μέσω συνάρτησης.
+DBQuery και DBGeoQuery
+offer.item_name σε offer.item_id
+navbar σε ξεχωριστό αρχείο
