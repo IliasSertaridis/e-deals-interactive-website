@@ -97,6 +97,7 @@ DROP TABLE IF EXISTS offer;
 CREATE TABLE offer (
     offer_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     store_id SMALLINT UNSIGNED NOT NULL,
+    item_id SMALLINT UNSIGNED NOT NULL,
     price FLOAT(5,2) NOT NULL,
     registration_date DATE NOT NULL,
     expiration_date DATE NOT NULL,
@@ -105,10 +106,9 @@ CREATE TABLE offer (
     in_stock BOOLEAN NOT NULL,
     uploader_email VARCHAR(45) NOT NULL,
     uploader_username VARCHAR(45) NOT NULL,
-    item_name VARCHAR(45) NOT NULL,
     CONSTRAINT offer_store_id FOREIGN KEY(store_id) REFERENCES store(store_id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT offer_uploader FOREIGN KEY(uploader_email, uploader_username) REFERENCES user(email, username) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT offer_item_name FOREIGN KEY(item_name) REFERENCES item(name) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT offer_item_id FOREIGN KEY(item_id) REFERENCES item(item_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(offer_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -126,17 +126,4 @@ CREATE TABLE review (
     CONSTRAINT review_user FOREIGN KEY(user_email, user_username) REFERENCES user(email, username) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT review_offer_id FOREIGN KEY(offer_id) REFERENCES offer(offer_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(review_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Table structure for table `administrator`
---
-
-DROP TABLE IF EXISTS administrator;
-CREATE TABLE administrator (
-    email VARCHAR(45) NOT NULL,
-    username VARCHAR(45) NOT NULL,
-    password VARCHAR(45) NOT NULL,
-    UNIQUE KEY(username),
-    PRIMARY KEY(email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
