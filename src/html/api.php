@@ -15,13 +15,17 @@ switch($query)
             switch($type)
             {
                 case "supermarket":
-                    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'supermarket';");
+                    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'supermarket' AND store_id NOT IN(SELECT store_id FROM offer);");
                     echo json_encode($result, JSON_UNESCAPED_UNICODE);
                     break;
                 case "convenience":
-                    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'convenience';");
+                    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'convenience' AND store_id NOT IN(SELECT store_id FROM offer);");
                     echo json_encode($result, JSON_UNESCAPED_UNICODE);
                     break;
+                case "dealStores":
+                    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_id IN(SELECT store_id FROM offer);");
+                    echo json_encode($result, JSON_UNESCAPED_UNICODE);
+                    break;   
                 default:
                     $json = json_encode((object) null);
                     echo $json;
@@ -30,7 +34,7 @@ switch($query)
         }
         else {
             $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store;");
-            echo json_encode($result);
+            echo json_encode($result, JSON_UNESCAPED_UNICODE);
         }
         break;
     case "prices":
@@ -38,7 +42,7 @@ switch($query)
             switch($timeframe)
             { 
                 case 'daily':
-                    $result = DBQuery("SELECT item.item_id, item.name, price.date, price.price AS average_daily_price FROM item INNER JOIN price ON item.name = price.item_name WHERE item.item_id = " . $item . ";");
+                    $result = DBQuery("SELECT item.item_id, item.name, price.date, price.price FROM item INNER JOIN price AS average_daily_price ON item.name = price.item_name WHERE item.item_id = " . $item . ";");
                     $json = json_encode($result, JSON_UNESCAPED_UNICODE);
                     echo $json;
                     break;

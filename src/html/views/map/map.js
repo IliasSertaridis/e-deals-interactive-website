@@ -1,5 +1,6 @@
 var supermarket_data;
 var convenience_store_data;
+var deal_store_data;
 
 var supermarket_query = $.ajax({
     url: "http://localhost/api/stores/supermarket",
@@ -14,7 +15,14 @@ var convenience_store_query = $.ajax({
     success: function(responseText) {convenience_store_data = JSON.parse(responseText);}
 });
 
-$.when(supermarket_query, convenience_store_query).then(function(response1, response2) {
+var deal_stores_query = $.ajax({
+    url: "http://localhost/api/stores/dealStores",
+    type: "GET",
+    fail: function() {console.log("Deals Store Data DB Error");},
+    success: function(responseText) {deal_store_data = JSON.parse(responseText);}
+});
+
+$.when(supermarket_query, convenience_store_query, deal_stores_query).then(function() {
     onSuccess()
 });
 
@@ -83,6 +91,9 @@ function onSuccess() {
         pointToLayer: Deals_Icon
     }
 
+    var Deal_Stores_Layer = new L.GeoJSON(deal_store_data, DealsOptions);
+    Deal_Stores_Layer.addTo(mymap);
+
     //base layer for layer control
     var baseMaps = {
         "OpenStreetMap": osm
@@ -91,7 +102,8 @@ function onSuccess() {
     //extra layers for layer control
     var overlayMaps = {
         "Supermarkets": Supermarkets_Layer,
-        "Convenience Stores": Conveniece_Store_Layer
+        "Convenience Stores": Conveniece_Store_Layer,
+        "Deal Stores": Deal_Stores_Layer
     };
 
     //layer control initialization
@@ -107,7 +119,7 @@ function onSuccess() {
 
     let controlSearch = new L.Control.Search({
         position: "topright",
-        layer: Supermarkets_Layer, Conveniece_Store_Layer,
+        layer: Supermarkets_Layer, Conveniece_Store_Layer, Deal_Stores_Layer,
         propertyName: "name",
         initial: false,
         zoom: 14,
