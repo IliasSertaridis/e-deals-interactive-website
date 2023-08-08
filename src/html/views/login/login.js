@@ -15,7 +15,7 @@ if (loginTrigger)
         var username = $("#username").val();
         var password = $("#password").val();
         $.ajax({
-            url: '/login',
+            url: '/api/login',
             type: "POST",
             data: {username:username, password:password},
             dataType: 'json',

@@ -4,7 +4,8 @@
 
 USE edeals;
 
-INSERT INTO administrator VALUES 
-('up1072484@upnet.gr','Greg','password'),
-('up1072480@upnet.gr','Elias','password'),
-('up1072563@upnet.gr', 'Peri', 'password');
+INSERT INTO user VALUES 
+('up1072484@upnet.gr','Gregory','password', 0, 0, 0, 0, 'administrator'),
+('up1072480@upnet.gr','Elias','password', 0, 0, 0, 0, 'administrator'),
+('up1072563@upnet.gr', 'Peri', 'password', 0, 0, 0, 0, 'administrator'),
+('george@gmail.com', 'George', 'Password1!', 0, 0, 0, 0, 'user');
