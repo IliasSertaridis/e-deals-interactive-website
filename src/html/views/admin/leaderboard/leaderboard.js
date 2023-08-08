@@ -1,4 +1,7 @@
-// Basic example
+$(function(){
+  $("#leaderboard-nav").attr("class", "nav-link active");
+});
+
 $(document).ready(function () {
     $.ajax({
         url: '/api/admin/leaderboard',

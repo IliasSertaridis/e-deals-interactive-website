@@ -12,6 +12,7 @@ session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
 {
     if ($_SESSION['user_type'] == 'user') {
+        require_once __DIR__.'/../usernavbar.html';
         require_once __DIR__.'/submit.html';
     }
     else{

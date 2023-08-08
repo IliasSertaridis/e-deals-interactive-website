@@ -1,3 +1,7 @@
+$(function(){
+  $("#submit-nav").attr("class", "nav-link active");
+});
+
 var last;
 function select(element)
             {

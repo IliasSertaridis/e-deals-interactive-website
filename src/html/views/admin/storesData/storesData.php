@@ -12,6 +12,7 @@ session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
 {
     if ($_SESSION['user_type'] == 'administrator') {
+        require_once __DIR__.'/../adminnavbar.html';
         require_once __DIR__.'/storesData.html';
     }
     else{
