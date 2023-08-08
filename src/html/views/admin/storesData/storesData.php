@@ -1,25 +1,8 @@
 <?php
-session_start();	
-?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-    </body>
-</html>
-<?php
-if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
+require_once 'views/checkSession.php';
+if (checkSession('profile','','login') == 'administrator')
 {
-    if ($_SESSION['user_type'] == 'administrator') {
-        require_once __DIR__.'/../adminnavbar.html';
-        require_once __DIR__.'/storesData.html';
-    }
-    else{
-        header("Location: profile");
-    }
-}
-else {
-    header("Location: login");
+    require_once __DIR__.'/../adminnavbar.html';
+    require_once __DIR__.'/storesData.html';
 }
 ?>
