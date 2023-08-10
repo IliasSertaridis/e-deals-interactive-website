@@ -29,6 +29,7 @@ get('/api/prices', 'api/prices.php');
 get('/api/admin/items/delete', 'api/admin/delete.php');
 get('/api/admin/stores/delete', 'api/admin/delete.php');
 get('/api/admin/leaderboard', 'api/admin/leaderboard.php');
+get('/api/admin/statistics', 'api/admin/statistics.php');
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory.php');
 get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory.php');
 get('/api/profile/scoreHistory', 'api/profile/scoreHistory.php');
