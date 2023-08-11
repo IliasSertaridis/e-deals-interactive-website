@@ -1,8 +1,9 @@
 <?php
 session_start();
 require_once 'dbquery.php';
+
+$result = array();
 if($_SESSION['user_type'] == 'administrator') {
-    $result = array();
     try {
         $result = DBQuery("SELECT count(*) as count, registration_date FROM offer GROUP BY registration_date ORDER BY registration_date DESC;");
     }
