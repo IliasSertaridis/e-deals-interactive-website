@@ -19,7 +19,27 @@ if (isset($type)) {
     }
 }
 else {
-    $result = DBGeoQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store;");
-    echo json_encode($result);
+    $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store;");
+
+    $storesarray = array(
+        'type' => 'FeatureCollection',
+        'features' => array()
+    );
+
+    foreach($result as $row) {
+        $store = array(
+            'type' => 'Feature',
+            'properties' => array(
+                'name' => $row['name'],
+                'shop' => $row['store_type']),
+            'geometry' => array(
+                'type' => 'Point',
+                'coordinates' => array(
+                    floatval($row['longtitude']),
+                    floatval($row['latitude'])))
+        );
+        array_push($storesarray['features'], $store);
+    }
+    echo json_encode($storesarray);
 }
 ?>

@@ -5,7 +5,7 @@ require_once 'dbquery.php';
 
 if (isset($_SESSION['username']) && isset($_SESSION['user_type']) && $_SESSION['user_type'] == 'administrator')
 {
-    if ($_SERVER['REQUEST_URI'] == "/admin/items/delete") {
+    if ($_SERVER['REQUEST_URI'] == "/api/admin/items/delete") {
         $response1 = DBQuery("DELETE FROM item;");
         $response2 = DBQuery("DELETE FROM category;");
         $response3 = DBQuery("DELETE FROM subcategory;");
@@ -17,7 +17,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['user_type']) && $_SESSION['
             echo "ERROR";
         }
     }
-    else if($_SERVER['REQUEST_URI'] == "/admin/stores/delete") {
+    else if($_SERVER['REQUEST_URI'] == "/api/admin/stores/delete") {
         $response = DBQuery("DELETE FROM store;");
         if($response) {
             echo "SUCCESS";
