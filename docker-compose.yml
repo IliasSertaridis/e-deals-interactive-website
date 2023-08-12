@@ -17,6 +17,7 @@ services:
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./config/apache2.conf:/etc/apache2/apache2.conf
       - ./config/sites-available:/etc/apache2/sites-available
+      - ./crontabs:/var/spool/cron/crontabs
   db:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
