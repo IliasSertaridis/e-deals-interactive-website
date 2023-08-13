@@ -4,7 +4,7 @@ FROM php:8-apache
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get autoremove -y && \
-    apt-get install vim -y
+    apt-get install vim cron -y
 
 #COPY my-apache-site.conf /etc/apache2/sites-available/my-apache-site.conf
 

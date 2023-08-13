@@ -22,15 +22,23 @@ get('/admin/items', 'views/admin/itemsData/itemsData.php');
 get('/admin/stores', 'views/admin/storesData/storesData.php');
 get('/admin/statistics', 'views/admin/statistics/statistics.php');
 get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
-get('/test', 'views/test.php');
+get('/test', 'views/test/test.php');
 // API
 get('/api/stores', 'api/stores.php');
 get('/api/prices', 'api/prices.php');
+get('/api/userScore','api/users/usersScore.php');
 get('/api/admin/items/delete', 'api/admin/delete.php');
 get('/api/admin/stores/delete', 'api/admin/delete.php');
+get('/api/admin/leaderboard', 'api/admin/leaderboard.php');
+get('/api/admin/statistics/offers', 'api/admin/statistics/offers.php');
+get('/api/admin/statistics/discount', 'api/admin/statistics/discount.php');
+get('/api/admin/statistics/categories', 'api/admin/statistics/categories.php');
+get('/api/admin/statistics/subcategories', 'api/admin/statistics/subcategories.php');
+get('/api/profile/dealsHistory', 'api/profile/dealsHistory.php');
+get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory.php');
+get('/api/profile/scoreHistory', 'api/profile/scoreHistory.php');
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory/dealsHistory.php');
 get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory/reviewsHistory.php');
-get('/api/userScore','api/users/usersScore.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php

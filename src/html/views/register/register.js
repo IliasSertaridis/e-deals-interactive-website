@@ -1,3 +1,7 @@
+$(function(){
+  $("#register-nav").attr("class", "nav-link active");
+});
+
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 const showAlert = (message, type) => {
   alertPlaceholder.innerHTML = [

@@ -122,7 +122,7 @@ CREATE TABLE review (
     user_email VARCHAR(45) NOT NULL,
     user_username VARCHAR(45) NOT NULL,
     offer_id SMALLINT UNSIGNED NOT NULL,
-    rating BOOLEAN NOT NULL,
+    rating ENUM('like','dislike') NOT NULL,
     CONSTRAINT review_user FOREIGN KEY(user_email, user_username) REFERENCES user(email, username) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT review_offer_id FOREIGN KEY(offer_id) REFERENCES offer(offer_id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(review_id)
