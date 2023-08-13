@@ -16,6 +16,7 @@ const loginTrigger = document.getElementById('loginButton')
 if (loginTrigger)
 {
     loginTrigger.addEventListener('click', () => {
+
         var username = $("#username").val();
         var password = $("#password").val();
         $.ajax({
@@ -38,5 +39,6 @@ if (loginTrigger)
                 }
             }
         });
+        console.log("peri");
     })
 }
