@@ -1,5 +1,6 @@
 <?php
-session_start();	
+session_start();
+require_once 'api/submit/submit.php'
 ?>
 <html>
     <head>
@@ -16,4 +17,6 @@ if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
 else {
     header("Location: login");
 }
+
+SubmitOffer(1,2,3);
 ?>

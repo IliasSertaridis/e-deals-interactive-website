@@ -26,6 +26,7 @@ get('/test', 'views/test/test.php');
 // API
 get('/api/stores', 'api/stores.php');
 get('/api/prices', 'api/prices.php');
+get('/api/userScore','api/users/usersScore.php');
 get('/api/admin/items/delete', 'api/admin/delete.php');
 get('/api/admin/stores/delete', 'api/admin/delete.php');
 get('/api/admin/leaderboard', 'api/admin/leaderboard.php');
@@ -36,6 +37,8 @@ get('/api/admin/statistics/subcategories', 'api/admin/statistics/subcategories.p
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory.php');
 get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory.php');
 get('/api/profile/scoreHistory', 'api/profile/scoreHistory.php');
+get('/api/profile/dealsHistory', 'api/profile/dealsHistory/dealsHistory.php');
+get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory/reviewsHistory.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
@@ -88,6 +91,7 @@ post('/api/admin/items/upload', 'api/admin/upload.php');
 post('/api/admin/stores/upload', 'api/admin/upload.php');
 post('/api/profile/details/verify', 'api/profile/details/verify.php');
 post('/api/profile/details/change', 'api/profile/details/change.php');
+get('/api/submitOffer','api/submit/submit.php');
 
 
 
