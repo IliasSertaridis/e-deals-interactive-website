@@ -5,10 +5,13 @@ if (isset($type)) {
     switch($type)
     {
         case "supermarket":
-            $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'supermarket';");
+            $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'supermarket' AND store_id NOT IN(SELECT store_id FROM offer);");
             break;
         case "convenience":
-            $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'convenience';");
+            $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_type = 'convenience' AND store_id NOT IN(SELECT store_id FROM offer);");
+            break;
+        case "dealStores":
+            $result = DBQuery("SELECT name, ST_x(coordinates) AS longtitude, ST_y(coordinates) AS latitude, store_type FROM store WHERE store_id IN(SELECT store_id FROM offer);");
             break;
         default:
         $json = json_encode((object) null, JSON_UNESCAPED_UNICODE);
