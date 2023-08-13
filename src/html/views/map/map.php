@@ -1,7 +1,15 @@
 <?php
 require_once 'views/checkSession.php';
-if (checkSession('','','login') == 'user' || 'administrator')
+$type = checkSession('','','login');
+switch ($type)
 {
-    require_once __DIR__.'/map.html';
+    case 'user':
+        require_once __DIR__.'/../usernavbar.html';
+        require_once __DIR__.'/map.html';
+        break;
+    case 'administrator':
+        require_once __DIR__.'/../admin/adminnavbar.html';
+        require_once __DIR__.'/map.html';
+        break;
 }
 ?>
