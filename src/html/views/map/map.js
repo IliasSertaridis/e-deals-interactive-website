@@ -1,25 +1,103 @@
-var supermarket_data;
-var convenience_store_data;
-
-var supermarket_query = $.ajax({
-    url: "http://localhost/api/stores/supermarket",
-    type: "GET",
-    fail: function() {console.log("Supermarket Data DB Error");},
-    success: function(responseText) {supermarket_data = JSON.parse(responseText);}
+$(function(){
+  $("#map-nav").attr("class", "nav-link active");
+    dealStoresQuery('');
+    initializeMap();
+    categoriesQuery = $.ajax({
+        url: '/api/admin/statistics/categories',
+        type: "GET",
+        dataType: 'json',
+        fail: function() {
+            showAlert("Failed to connect to database", 'danger');
+        },
+        success: function(response) {
+            for (var i = 0; i < response.length; i++) {
+                $('#categories-dropdown').append("<button class='dropdown-item' onclick='filterCategory(this.innerHTML)'>" + response[i].name  + "</button>");
+            }
+            $('#categories-div').removeAttr('hidden');
+        }
+    });
 });
-var convenience_store_query = $.ajax({
-    url: "http://localhost/api/stores/convenience",
-    type: "GET",
-    fail: function() {console.log("Convenience Store Data DB Error");},
-    success: function(responseText) {convenience_store_data = JSON.parse(responseText);}
-});
 
-$.when(supermarket_query, convenience_store_query).then(function(response1, response2) {
-    onSuccess()
-});
+var mymap;
+var layerControl;
 
-function onSuccess() {
-    let mymap = L.map('mapid');
+var Supermarkets_Layer;
+var Conveniece_Store_Layer;
+var Deal_Stores_Layer;
+
+
+function supermarketQuery(text, type) {
+    var data = [];
+    if (type === 'name') {
+        data = {name:text};
+    }
+    else if (type === 'category') {
+        data = {category:text};
+    }
+    var supermarket_query = $.ajax({
+        url: "http://localhost/api/stores/supermarket",
+        type: "GET",
+        data: data,
+        fail: function() {console.log("Supermarket Data DB Error");},
+        success: function(responseText) {
+            var supermarket_data = JSON.parse(responseText);
+            if(supermarket_data.features.length !== 0) {
+                addSupermarketData(supermarket_data)
+                return supermarket_query
+            }
+        }
+    });
+}
+
+function convenienceStoreQuery(text, type) {
+    var data = [];
+    if (type === 'name') {
+        data = {name:text};
+    }
+    else if (type === 'category') {
+        data = {category:text};
+    }
+    var convenience_store_query = $.ajax({
+        url: "http://localhost/api/stores/convenience",
+        type: "GET",
+        data: data,
+        fail: function() {console.log("Convenience Store Data DB Error");},
+        success: function(responseText) {
+            var convenience_store_data = JSON.parse(responseText);
+            if(convenience_store_data.features.length !== 0) {
+                addConvenienceStoreData(convenience_store_data)
+                return convenience_store_query;
+            }
+        }
+    });
+}
+
+function dealStoresQuery(text, type) {
+    var data = [];
+    if (type === 'name') {
+        data = {name:text};
+    }
+    else if (type === 'category') {
+        data = {category:text};
+    }
+    var deal_stores_query = $.ajax({
+        url: "http://localhost/api/stores/dealStores",
+        type: "GET",
+        data: data,
+        fail: function() {console.log("Deals Store Data DB Error");},
+        success: function(responseText) {
+            var deal_store_data = JSON.parse(responseText);
+            console.log(deal_store_data);
+            if(deal_store_data.features.length !== 0) {
+                addDealStoresData(deal_store_data);
+                return deal_stores_query;
+            }
+        }
+    });
+}
+
+function initializeMap() {
+    mymap = L.map('mapid');
     let osmUrl='https://tile.openstreetmap.org/{z}/{x}/{y}.png';
     let osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     let osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
@@ -27,6 +105,15 @@ function onSuccess() {
     mymap.setView([38.246242, 21.7350847], 16);
     L.control.locate().addTo(mymap);
 
+    //base layer for layer control
+    var baseMaps = {
+        "OpenStreetMap": osm
+    };
+    //layer control initialization
+    layerControl = new L.control.layers(baseMaps).addTo(mymap);
+}
+
+function addSupermarketData(supermarket_data) {
     //replace leaflet's blue marker with custom supermarket icon for supermarkets
     function Supermarket_Icon(feature,latlng){
         let supermarket_icon = L.icon({
@@ -44,9 +131,12 @@ function onSuccess() {
     }
 
     //creating the supermarket layer and adding it to the map
-    var Supermarkets_Layer = new L.GeoJSON(supermarket_data, SupermarketOptions);
+    Supermarkets_Layer = new L.GeoJSON(supermarket_data, SupermarketOptions);
     Supermarkets_Layer.addTo(mymap);
+    layerControl.addOverlay(Supermarkets_Layer, 'Supermarkets');
+}
 
+function addConvenienceStoreData(convenience_store_data) {
     //replace leaflet's blue marker with custom convenience-store icon for convenience-stores
     function Convenience_Store_Icon(feature,latlng){
         let convenience_store_icon = L.icon({
@@ -64,9 +154,12 @@ function onSuccess() {
     }
 
     //creating the convenience-store layer and adding it to the map
-    var Conveniece_Store_Layer = new L.GeoJSON(convenience_store_data, ConvenieceStoreOptions);
+    Conveniece_Store_Layer = new L.GeoJSON(convenience_store_data, ConvenieceStoreOptions);
     Conveniece_Store_Layer.addTo(mymap);
+    layerControl.addOverlay(Conveniece_Store_Layer, 'Convenience Stores');
+}
 
+function addDealStoresData(deal_store_data) {
     //replace leaflet's blue marker with custom convenience-store icon for convenience-stores
     function Deals_Icon(feature,latlng){
         let deals_icon = L.icon({
@@ -83,36 +176,31 @@ function onSuccess() {
         pointToLayer: Deals_Icon
     }
 
-    //base layer for layer control
-    var baseMaps = {
-        "OpenStreetMap": osm
-    };
+    Deal_Stores_Layer = new L.GeoJSON(deal_store_data, DealsOptions);
+    Deal_Stores_Layer.addTo(mymap);
+    layerControl.addOverlay(Deal_Stores_Layer, 'Stores Currently With Deals');
+}
 
-    //extra layers for layer control
-    var overlayMaps = {
-        "Supermarkets": Supermarkets_Layer,
-        "Convenience Stores": Conveniece_Store_Layer
-    };
+function nameFilter() {
+    mymap.off();
+    mymap.remove();
+    initializeMap();
+    supermarketQuery($('#searchForm').val(), 'name');
+    convenienceStoreQuery($('#searchForm').val(), 'name');
+    dealStoresQuery($('#searchForm').val(), 'name');
+}
 
-    //layer control initialization
-    L.control.layers(baseMaps,overlayMaps).addTo(mymap);
+function filterCategory(category) {
+    mymap.off();
+    mymap.remove();
+    initializeMap();
+    console.log(category);
+    dealStoresQuery(category, 'category');
+}
 
-    //Παλιός κώδικας από διαφάνειες
-    /*var featuresLayer = new L.GeoJSON(data, {
-    onEachFeature: function (feature, marker) {
-      marker.bindPopup("<h4>" + feature.properties.name + "</h4>");
-    }
-  });
-  featuresLayer.addTo(mymap);*/
-
-    let controlSearch = new L.Control.Search({
-        position: "topright",
-        layer: Supermarkets_Layer, Conveniece_Store_Layer,
-        propertyName: "name",
-        initial: false,
-        zoom: 14,
-        marker: false
-    });
-
-    mymap.addControl(controlSearch);
+function removeFilter() {
+    mymap.off();
+    mymap.remove();
+    initializeMap('');
+    dealStoresQuery('');
 }
