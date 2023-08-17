@@ -39,6 +39,5 @@ if (loginTrigger)
                 }
             }
         });
-        console.log("peri");
     })
 }

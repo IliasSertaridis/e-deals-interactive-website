@@ -1,7 +1,6 @@
 <?php
 
 require_once 'dbquery.php';
-session_start();
 try {
 
     $users_score_query = "SELECT username,current_score,total_tokens,last_month_tokens,total_score FROM user";

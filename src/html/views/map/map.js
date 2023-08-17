@@ -3,7 +3,7 @@ $(function(){
     dealStoresQuery('');
     initializeMap();
     categoriesQuery = $.ajax({
-        url: '/api/admin/statistics/categories',
+        url: '/api/categories',
         type: "GET",
         dataType: 'json',
         fail: function() {

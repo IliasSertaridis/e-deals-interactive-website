@@ -22,226 +22,24 @@
     <body>
         <main>
             <div class="container my-5">
+                <h1 class="h1 text-center" id="greeter"></h1>
+                <div id="liveAlertPlaceholder"></div>
                 <div class="form-outline">
                     <div class="col">
-                        <input type="search" id="form1" class="form-control" placeholder="Filter Items" aria-label="Search" />
+                        <input type="search" id="filterForm" class="form-control" placeholder="Filter Items" aria-label="Search" />
                     </div>
                 </div>
+                <button class="btn btn-primary mt-3" id="filterButton" onclick="filterItems()">Apply Item Filter</button>
+                <button class="btn btn-primary mt-3" id="removeButton" onclick="removeFilter()">Remove Filter</button>
+                <div id="price-div" class="input-group mt-3" hidden="true">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">€</span>
+                    </div>
+                    <input id="price" type="text" class="form-control" aria-label="Price">
+                </div>
+                <button id="submit" class="btn btn-primary mt-3" id="filterButton" onclick="submit()" hidden="true">Submit Offer</button>
                 <div class="accordion mt-3" id="itemsAccordion">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                First Level Category
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#itemsAccordion">
-                            <div class="accordion-body">
-                                <div class="accordion" id="subone-itemsAccordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subone-headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#subone-collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subone-collapseOne" class="accordion-collapse collapse" aria-labelledby="subone-headingOne" data-bs-parent="#subone-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subone-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subone-collapseTwo" aria-expanded="false" aria-controls="subone-collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subone-collapseTwo" class="accordion-collapse collapse" aria-labelledby="subone-headingTwo" data-bs-parent="#subone-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                First Level Category
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#itemsAccordion">
-                            <div class="accordion-body">
-                                <div class="accordion" id="subtwo-itemsAccordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subtwo-headingTwo">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#subtwo-collapseOne" aria-expanded="true" aria-controls="collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subtwo-collapseOne" class="accordion-collapse collapse" aria-labelledby="subtwo-headingTwo" data-bs-parent="#subtwo-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subtwo-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subtwo-collapseTwo" aria-expanded="false" aria-controls="subtwo-collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subtwo-collapseTwo" class="accordion-collapse collapse" aria-labelledby="subtwo-headingTwo" data-bs-parent="#subtwo-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                First Level Category
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#itemsAccordion">
-                            <div class="accordion-body">
-                                <div class="accordion" id="subthree-itemsAccordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subthree-headingThree">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#subthree-collapseOne" aria-expanded="true" aria-controls="collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subthree-collapseOne" class="accordion-collapse collapse" aria-labelledby="subthree-headingTwo" data-bs-parent="#subthree-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subthree-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subthree-collapseTwo" aria-expanded="false" aria-controls="subthree-collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subthree-collapseTwo" class="accordion-collapse collapse" aria-labelledby="subthree-headingTwo" data-bs-parent="#subthree-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                First Level Category
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#itemsAccordion">
-                            <div class="accordion-body">
-                                <div class="accordion" id="subfour-itemsAccordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subfour-headingFour">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#subfour-collapseOne" aria-expanded="true" aria-controls="collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subfour-collapseOne" class="accordion-collapse collapse" aria-labelledby="subfour-headingTwo" data-bs-parent="#subfour-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="subfour-headingTwo">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subfour-collapseTwo" aria-expanded="false" aria-controls="subfour-collapseTwo">
-                                                Second Level Category
-                                            </button>
-                                        </h2>
-                                        <div id="subfour-collapseTwo" class="accordion-collapse collapse" aria-labelledby="subfour-headingTwo" data-bs-parent="#subfour-itemsAccordion">
-                                            <div class="accordion-body">
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 1
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 2
-                                                </button>
-                                                <button class="accordion-button collapsed" type="button" onclick="select(this)">
-                                                    Item 3
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script src="views/submit/submit.js"></script>

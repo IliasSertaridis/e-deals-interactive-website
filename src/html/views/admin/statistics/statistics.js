@@ -68,7 +68,7 @@ offersQuery = $.ajax({
 });
 
 categoriesQuery = $.ajax({
-    url: '/api/admin/statistics/categories',
+    url: '/api/categories',
     type: "GET",
     dataType: 'json',
     fail: function() {
@@ -132,7 +132,7 @@ originalDiscountQuery = $.ajax({
 
 function selectCategory(category) {
     $.ajax({
-        url: '/api/admin/statistics/subcategories',
+        url: '/api/subcategories',
         type: "GET",
         data: {category:category},
         dataType: 'json',
