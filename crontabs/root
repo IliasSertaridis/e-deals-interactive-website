@@ -24,4 +24,4 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-#0 0 1 * * /usr/local/bin/php /var/www/src/update_user_tokens.php
+0 0 1 * * /usr/local/bin/php /var/www/src/scripts/userScore.php
