@@ -3,7 +3,7 @@ session_start();
 require_once 'dbquery.php';
 
 $result = array();
-if($_SESSION['user_type'] == 'administrator')
+if(isset($_SESSION['user_type']))
 {
     if (isset($_GET['category']))
     {

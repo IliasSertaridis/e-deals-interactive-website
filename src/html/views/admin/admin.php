@@ -15,7 +15,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['user_type']))
         header("Location: /admin/items");
     }
     else{
-        header("Location: profile");
+        header("Location: map");
     }
 }
 else {

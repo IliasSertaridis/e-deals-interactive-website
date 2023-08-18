@@ -7,5 +7,5 @@
 </html>
 <?php
 require_once 'views/checkSession.php';
-checkSession('profile','admin','login');
+checkSession('map','admin','login');
 ?>
