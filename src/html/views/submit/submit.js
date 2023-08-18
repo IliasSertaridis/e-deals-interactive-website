@@ -16,8 +16,8 @@ $(function(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     store_id = urlParams.get('store_id');
-    $("#greeter").html("Please submit the deal you found for store " + store_id + ":")
-    $("#submit-nav").attr("class", "nav-link active");
+    store_name = urlParams.get('name');
+    $("#greeter").html("Please submit the deal you found for " + store_name + ":")
     initializeItemsList('');
 });
 

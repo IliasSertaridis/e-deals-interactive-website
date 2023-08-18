@@ -22,13 +22,11 @@ get('/admin/items', 'views/admin/itemsData/itemsData.php');
 get('/admin/stores', 'views/admin/storesData/storesData.php');
 get('/admin/statistics', 'views/admin/statistics/statistics.php');
 get('/admin/leaderboard', 'views/admin/leaderboard/leaderboard.php');
-get('/test', 'views/test/test.php');
 // API
-get('/api/stores', 'api/stores.php');
-get('/api/prices', 'api/prices.php');
 get('/api/categories', 'api/categories.php');
 get('/api/subcategories', 'api/subcategories.php');
-get('/api/userScore','api/users/usersScore.php');
+get('/api/map/stores', 'api/map/stores.php');
+get('/api/map/getOffers', 'api/map/getOffers.php');
 get('/api/admin/items/delete', 'api/admin/delete.php');
 get('/api/admin/stores/delete', 'api/admin/delete.php');
 get('/api/admin/leaderboard', 'api/admin/leaderboard.php');
@@ -44,8 +42,7 @@ get('/api/submit/items','api/submit/items.php');
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
 // API
-get('/api/stores/$type', 'api/stores.php');
-get('/api/prices/$item/$timeframe', 'api/prices.php');
+get('/api/map/stores/$type', 'api/map/stores.php');
 
 // Dynamic GET. Example with 2 variables
 // The $name will be available in full_name.php
@@ -93,7 +90,6 @@ post('/api/admin/stores/upload', 'api/admin/upload.php');
 post('/api/profile/details/verify', 'api/profile/details/verify.php');
 post('/api/profile/details/change', 'api/profile/details/change.php');
 post('/api/submit/submit','api/submit/submit.php');
-get('/api/submit/submit','api/submit/submit.php');
 
 
 

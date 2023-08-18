@@ -29,7 +29,7 @@ if (loginTrigger)
             },
             success: function(response) {
                 if(response.status == 1) {
-                    window.location.href = "/profile";
+                    window.location.href = "/map";
                 }
                 else if (response.status == 2) {
                     window.location.href = "/admin";
