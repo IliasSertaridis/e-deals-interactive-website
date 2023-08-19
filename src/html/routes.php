@@ -38,6 +38,7 @@ get('/api/profile/scoreHistory', 'api/profile/scoreHistory.php');
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory/dealsHistory.php');
 get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory/reviewsHistory.php');
 get('/api/submit/items','api/submit/items.php');
+get('/api/getUserType', 'api/getUserType.php');
 
 // Dynamic GET. Example with 1 variable
 // The $id will be available in user.php
@@ -90,6 +91,7 @@ post('/api/admin/stores/upload', 'api/admin/upload.php');
 post('/api/profile/details/verify', 'api/profile/details/verify.php');
 post('/api/profile/details/change', 'api/profile/details/change.php');
 post('/api/submit/submit','api/submit/submit.php');
+post('/api/map/deleteOffer','api/map/deleteOffer.php');
 
 
 
