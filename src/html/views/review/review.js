@@ -40,12 +40,12 @@ function displayOffers(store_id) {
             var response = JSON.parse(data);
             console.log(response);
             results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th><th>View Details</th>`;
-            var takis;
+            var stock;
             for(element in response){
                 if(response[element].in_stock == 1){
-                    takis = 'Yes';
+                    stock = 'Yes';
                 } else {
-                    takis = "No";
+                    stock = "No";
                 }
                 response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
                 response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
@@ -56,7 +56,7 @@ function displayOffers(store_id) {
                 <td>${response[element].expires}</td>
                 <td>${response[element].likes}</td>
                 <td>${response[element].dislikes}</td>
-                <td>${takis}</td>
+                <td>${stock}</td>
                 <td>${response[element].hot_daily}</td>
                 <td>${response[element].hot_weekly}</td>
                 <td><button class="btn btn-primary" id="searchButton" onclick="productDetails('${response[element].name}')">View Details</button></td>
@@ -83,12 +83,12 @@ function productDetails(name){
             var response = JSON.parse(data);
             console.log(response);
             results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th><th>Uploader</th><th>Uploader Score</th>`;
-            var takis;
+            var stock;
             for(element in response){
                 if(response[element].in_stock == 1){
-                    takis = 'Yes';
+                    stock = 'Yes';
                 } else {
-                    takis = "No";
+                    stock = "No";
                 }
                 response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
                 response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
@@ -99,7 +99,7 @@ function productDetails(name){
                 <td>${response[element].expires}</td>
                 <td>${response[element].likes}</td>
                 <td>${response[element].dislikes}</td>
-                <td>${takis}</td>
+                <td>${stock}</td>
                 <td>${response[element].hot_daily}</td>
                 <td>${response[element].hot_weekly}</td>
                 <td>${response[element].username}</td>
@@ -107,7 +107,7 @@ function productDetails(name){
                 </tr>`;
             }
             results += `</table>`;
-            if(takis== 'Yes'){
+            if(stock== 'Yes'){
                 results += `<div>
                 <label class="form-label">Add Review:</label>
                 <select id="review" class="form-select" aria-label="Default select example">
