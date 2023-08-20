@@ -12,3 +12,28 @@ CREATE TRIGGER price_updater
   END$
 DELIMITER ;
 
+DELIMITER $
+CREATE TRIGGER update_offer
+  AFTER INSERT ON review
+  FOR EACH ROW
+  BEGIN
+    IF (SELECT rating FROM review WHERE review_id = NEW.review_id) = 'like' THEN
+      UPDATE offer SET number_of_likes = number_of_likes + 1 WHERE offer_id = NEW.offer_id;
+    ELSEIF (SELECT rating FROM review WHERE review_id = NEW.review_id) = 'dislike' THEN
+      UPDATE offer SET number_of_dislikes = number_of_dislikes + 1 WHERE offer_id = NEW.offer_id;
+    END IF;
+  END$
+DELIMITER ;
+
+DELIMITER $
+CREATE TRIGGER update_offer_2
+  AFTER UPDATE ON review
+  FOR EACH ROW
+  BEGIN
+    IF (OLD.rating = 'like' && NEW.rating = 'dislike') THEN
+      UPDATE offer SET number_of_likes = number_of_likes - 1, number_of_dislikes = number_of_dislikes + 1 WHERE offer_id = NEW.offer_id;
+    ELSEIF (OLD.rating = 'dislike' && NEW.rating = 'like') THEN
+      UPDATE offer SET number_of_dislikes = number_of_dislikes - 1, number_of_likes = number_of_likes + 1 WHERE offer_id = NEW.offer_id;
+    END IF;
+  END$
+DELIMITER ;

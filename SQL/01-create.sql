@@ -103,7 +103,7 @@ CREATE TABLE offer (
     expiration_date DATE NOT NULL,
     number_of_likes SMALLINT UNSIGNED NOT NULL,
     number_of_dislikes SMALLINT UNSIGNED NOT NULL,
-    in_stock BOOLEAN NOT NULL,
+    in_stock BIT NOT NULL,
     uploader_email VARCHAR(45) NOT NULL,
     uploader_username VARCHAR(45) NOT NULL,
     CONSTRAINT offer_store_id FOREIGN KEY(store_id) REFERENCES store(store_id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -125,5 +125,6 @@ CREATE TABLE review (
     rating ENUM('like','dislike') NOT NULL,
     CONSTRAINT review_user FOREIGN KEY(user_email, user_username) REFERENCES user(email, username) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT review_offer_id FOREIGN KEY(offer_id) REFERENCES offer(offer_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    UNIQUE(user_username,offer_id),
     PRIMARY KEY(review_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

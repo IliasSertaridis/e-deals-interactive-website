@@ -26,7 +26,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
       MYSQL_DATABASE: edeals
     volumes:
-      - ./db-data:/var/lib/mysql
+      #- ./db-data:/var/lib/mysql
       - ./SQL:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
