@@ -96,7 +96,7 @@ CREATE TABLE `offer` (
   CONSTRAINT `offer_item_id` FOREIGN KEY (`item_id`) REFERENCES `item` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `offer_store_id` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `offer_uploader` FOREIGN KEY (`uploader_email`, `uploader_username`) REFERENCES `user` (`email`, `username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,6 +105,7 @@ CREATE TABLE `offer` (
 
 LOCK TABLES `offer` WRITE;
 /*!40000 ALTER TABLE `offer` DISABLE KEYS */;
+INSERT INTO `offer` VALUES (1,54,84,3.00,'2023-08-20','2023-08-27',0,0,1,'up1072484@upnet.gr','Gregory'),(2,54,17,2.00,'2023-08-20','2023-08-27',0,0,1,'up1072484@upnet.gr','Gregory'),(3,54,879,6.00,'2023-08-20','2023-08-27',0,0,1,'up1072484@upnet.gr','Gregory'),(4,22,106,5.00,'2023-08-20','2023-08-27',0,0,1,'up1072484@upnet.gr','Gregory'),(5,41,30,17.00,'2023-08-20','2023-08-27',0,0,1,'up1072484@upnet.gr','Gregory'),(6,54,449,2.50,'2023-08-20','2023-08-27',0,0,1,'george@gmail.com','George');
 /*!40000 ALTER TABLE `offer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -152,7 +153,7 @@ CREATE TABLE `price` (
 
 LOCK TABLES `price` WRITE;
 /*!40000 ALTER TABLE `price` DISABLE KEYS */;
-INSERT INTO `price` VALUES ('Aim Οδ/τσα 2-6 Παιδική','2022-11-15',2.03),('Aim Οδ/τσα 2-6 Παιδική','2022-11-16',1.95),('Aim Οδ/τσα 2-6 Παιδική','2022-11-17',1.93),('Aim Οδ/τσα 2-6 Παιδική','2022-11-18',1.94),('Aim Οδ/τσα 2-6 Παιδική','2022-11-19',1.85),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-07-30',2.08),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-07-31',1.91),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-01',2.12),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-02',2.11),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-03',2.11),('Μίσκο Μακαρόνια Ν6 500γρ','2023-07-30',1.04),('Μίσκο Μακαρόνια Ν6 500γρ','2023-07-31',1.01),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-01',1.02),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-02',1.00),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-03',0.99);
+INSERT INTO `price` VALUES ('Aim Οδ/τσα 2-6 Παιδική','2022-11-15',2.03),('Aim Οδ/τσα 2-6 Παιδική','2022-11-16',1.95),('Aim Οδ/τσα 2-6 Παιδική','2022-11-17',1.93),('Aim Οδ/τσα 2-6 Παιδική','2022-11-18',1.94),('Aim Οδ/τσα 2-6 Παιδική','2022-11-19',1.85),('Bailey\'s Irish Cream Λικέρ 700ml','2023-08-20',17.00),('Dettol Αντιβ/κό Σπρέι 500ml','2023-08-20',6.00),('Dove Deodorant Κρέμα Rollon 50ml','2023-08-20',2.50),('Hansaplast Universal Αδιάβροχα 20τεμ','2023-08-20',2.00),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-07-30',2.08),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-07-31',1.91),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-01',2.12),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-02',2.11),('Misko Ταλιατέλλες Σιμιγδ 500γρ','2023-08-03',2.11),('Μάσκες Προστασ Προσώπου 50τεμ','2023-08-20',5.00),('Μεβγάλ Φέτα Vacuum 400γρ','2023-08-20',3.00),('Μίσκο Μακαρόνια Ν6 500γρ','2023-07-30',1.04),('Μίσκο Μακαρόνια Ν6 500γρ','2023-07-31',1.01),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-01',1.02),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-02',1.00),('Μίσκο Μακαρόνια Ν6 500γρ','2023-08-03',0.99);
 /*!40000 ALTER TABLE `price` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,4 +282,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-20 20:53:41
+-- Dump completed on 2023-08-20 21:48:36
