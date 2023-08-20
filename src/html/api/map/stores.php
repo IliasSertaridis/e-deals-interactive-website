@@ -23,6 +23,7 @@ else if (isset($type)) {
         $result = DBQuery($convenienceQuery);
     }
     else if(fnmatch("dealStores", $type)) {
+        header("Cache-Control: no-store");
         $result = DBQuery($dealStoresQuery);
     }
     else {

@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-store");
 require_once 'dbquery.php';
 require_once 'offerEvaluation.php';
 session_start();
