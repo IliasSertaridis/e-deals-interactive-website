@@ -127,7 +127,7 @@ function initializeMap() {
     let osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     let osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
     mymap.addLayer(osm);
-    mymap.setView([38.246242, 21.7350847], 16);
+    mymap.setView([userlat, userlng], 16);
     L.control.locate().addTo(mymap);
 
     //base layer for layer control
