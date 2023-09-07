@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-store");
 require_once 'dbquery.php';
 require_once 'offerEvaluation.php';
 session_start();
@@ -11,21 +12,6 @@ if(isset($_SESSION) && isset($_POST['store_id']) && isset($_POST['item_id']) && 
 }
 #$result = SubmitOffer(1, 1, 2.0);
 #echo json_encode($result, JSON_UNESCAPED_UNICODE);
-
-function offer_eval($price,$itemID){
-    if(last_days_over_20_discount($price,$itemID) && last_weeks_over_20_disc($price,$itemID)){
-        return 70;
-    }
-    else if(last_days_over_20_discount($price,$itemID)){
-        return 50;
-    }
-    else if(last_weeks_over_20_disc($price,$itemID)){
-        return 20;
-    }
-    else {
-        return 0;
-    }
-}
 
 function offer_existance_check($price,$itemID,$storeID){
     $response=DBQuery("SELECT price,store_id from offer where item_id=".$itemID." and store_id=" . $storeID . ";");

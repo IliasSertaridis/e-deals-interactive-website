@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-store");
 session_start();	
 $response = array();
 $status = 0;

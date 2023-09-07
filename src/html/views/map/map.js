@@ -127,7 +127,7 @@ function initializeMap() {
     let osmAttrib='Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
     let osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
     mymap.addLayer(osm);
-    mymap.setView([38.246242, 21.7350847], 16);
+    mymap.setView([userlat, userlng], 16);
     L.control.locate().addTo(mymap);
 
     //base layer for layer control
@@ -208,56 +208,79 @@ function loadStoreOffers(store_id, addReview) {
     var results;
     var id = store_id;
     $.ajax({ 
-        url: "/api/map/getOffers",
+        url: "/api/getUserType",
         type: "GET",
-        data: {store_id:store_id},
         async: false, //We only want the whole layer to load asynchronously at once
-        fail: function() {console.log("Offer Info DB Error");},
+        fail: function() {console.log("Get User Type Error");},
         success: function(data) {
-            var response = JSON.parse(data);
-            if(addReview) {
-                results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
-                for(element in response){
-                    response[element].in_stock = response[element].in_stock ? 'Yes' : 'No';
-                    response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
-                    response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
-                    results += `<tr>
-                    <td>${response[element].name}</td>
-                    <td>${response[element].price}</td>
-                    <td>${response[element].registered}</td>
-                    <td>${response[element].expires}</td>
-                    <td>${response[element].likes}</td>
-                    <td>${response[element].dislikes}</td>
-                    <td>${response[element].in_stock}</td>
-                    <td>${response[element].hot_daily}</td>
-                    <td>${response[element].hot_weekly}</td>
-</tr>`;
+            var user_type = JSON.parse(data);
+            $.ajax({ 
+                url: "/api/map/getOffers",
+                type: "GET",
+                data: {store_id:store_id},
+                async: false, //We only want the whole layer to load asynchronously at once
+                fail: function() {console.log("Offer Info DB Error");},
+                success: function(data) {
+                    var response = JSON.parse(data);
+                    if(addReview) {
+                        results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
+                        if(user_type.user_type === 'administrator') {
+                            results += `<th>Delete</th>`;
+                        }
+                        for(element in response){
+                            response[element].in_stock = response[element].in_stock ? 'Yes' : 'No';
+                            response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
+                            response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
+                            results += `<tr>
+                            <td>${response[element].name}</td>
+                            <td>${response[element].price}</td>
+                            <td>${response[element].registered}</td>
+                            <td>${response[element].expires}</td>
+                            <td>${response[element].likes}</td>
+                            <td>${response[element].dislikes}</td>
+                            <td>${response[element].in_stock}</td>
+                            <td>${response[element].hot_daily}</td>
+                            <td>${response[element].hot_weekly}</td>`;
+                            if(user_type.user_type === 'administrator')
+                            {
+                                results += `<td><button type="button" class="btn btn-primary" onclick="deleteOffer('${response[element].offer_id}')">Delete</button></td>`
+                            }
+                            results += `</tr>`;
+                        }
+                        results += `</table>
+                        <div class="text-center">
+                        <button type="button" class="btn btn-primary" onclick="review(${id})">Review Offers</button>
+                        </div> <br>`;
+                    }
+                    else {
+                        results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
+                        if(user_type.user_type === 'administrator') {
+                            results += `<th>Delete</th>`;
+                        }
+                        for(element in response){
+                            response[element].in_stock = response[element].in_stock ? 'Yes' : 'No';
+                            response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
+                            response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
+                            results += `<tr>
+                            <td>${response[element].name}</td>
+                            <td>${response[element].price}</td>
+                            <td>${response[element].registered}</td>
+                            <td>${response[element].expires}</td>
+                            <td>${response[element].likes}</td>
+                            <td>${response[element].dislikes}</td>
+                            <td>${response[element].in_stock}</td>
+                            <td>${response[element].hot_daily}</td>
+                            <td>${response[element].hot_weekly}</td>`;
+                            if(user_type.user_type === 'administrator')
+                            {
+                                results += `<td><button type="button" class="btn btn-primary" onclick="deleteOffer('${response[element].offer_id}')">Delete</button></td>`
+                            }
+                            results += `</tr>`;
+                        }
+                        results += `</table>`;
+                    }
                 }
-                results += `</table>
-                <div class="text-center">
-                <button type="button" class="btn btn-primary" onclick="review(${id})">Review Offers</button>
-                </div> <br>`;
-            }
-            else {
-                results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
-                for(element in response){
-                    response[element].in_stock = response[element].in_stock ? 'Yes' : 'No';
-                    response[element].hot_daily = response[element].hot_daily ? 'Yes' : 'No';
-                    response[element].hot_weekly = response[element].hot_weekly ? 'Yes' : 'No';
-                    results += `<tr>
-                    <td>${response[element].name}</td>
-                    <td>${response[element].price}</td>
-                    <td>${response[element].registered}</td>
-                    <td>${response[element].expires}</td>
-                    <td>${response[element].likes}</td>
-                    <td>${response[element].dislikes}</td>
-                    <td>${response[element].in_stock}</td>
-                    <td>${response[element].hot_daily}</td>
-                    <td>${response[element].hot_weekly}</td>
-</tr>`;
-                }
-                results += `</table>`;
-            }
+            });
         }
     });
     return results;
@@ -321,7 +344,18 @@ function removeFilter() {
 
 function submit(store_id, name){
     window.location.href = "/submit?store_id=" + store_id + "&name=" + name;
+}
 
+function deleteOffer(offer_id) {
+    $.ajax({ 
+        url: "/api/map/deleteOffer",
+        type: "POST",
+        data: {offer_id:offer_id},
+        fail: function() {console.log("Get User Type Error");},
+        success: function() {
+            showAlert("Offer deleted! Refresh page to update page", "success");
+        }
+    })
 }
 
 function review(store_id){

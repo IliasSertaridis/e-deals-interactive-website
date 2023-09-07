@@ -25,3 +25,4 @@
 # 
 # m h  dom mon dow   command
 0 0 1 * * /usr/local/bin/php /var/www/src/scripts/userScore.php
+0 0 * * * /usr/local/bin/php /var/www/src/scripts/deleteOldOffers.php
