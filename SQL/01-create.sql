@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS item;
 CREATE TABLE item (
     item_id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    photo blob,
+    photo VARCHAR(100),
     belongs_to VARCHAR(45) NOT NULL,
     PRIMARY KEY(item_id),
     UNIQUE(name),
