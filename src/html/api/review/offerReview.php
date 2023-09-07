@@ -1,5 +1,6 @@
 <?php
 session_start();	
+header("Cache-Control: no-store");
 $response = array();
 $status = 5;
 require_once 'dbquery.php';

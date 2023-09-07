@@ -1,4 +1,5 @@
 <?php
+header("Cache-Control: no-store");
 require_once 'views/checkSession.php';
 $user_type = checkSession('','','login');
 if ($user_type == 'user')

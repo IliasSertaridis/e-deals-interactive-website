@@ -296,8 +296,8 @@ function addDealStoresData(deal_store_data) {
             iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
             popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
         })
-        //if(calculateDistance(feature.geometry.coordinates[1], feature.geometry.coordinates[0]) < 50.0) {
-        if(true) {
+        if(calculateDistance(feature.geometry.coordinates[1], feature.geometry.coordinates[0]) < 50.0) {
+        //if(true) {
             return L.marker(latlng, {icon: deals_icon}).bindPopup("<h4 class=\"text-center h4\">" + feature.properties.name + "</h4>" + loadStoreOffers(feature.properties.store_id,true) + "<div class=\"text-center\"><button class=\"btn btn-primary\" id=\"filterButton\" text-center onclick=\"submit(" + feature.properties.store_id + ",'" + feature.properties.name + "')\">Submit New Offer</button></div>", {
                 maxWidth:1000
             });
