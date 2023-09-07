@@ -17,6 +17,7 @@ get('/logout', 'views/logout.php');
 get('/profile', 'views/profile/profile.php');
 get('/submit', 'views/submit/submit.php');
 get('/map', 'views/map/map.php');
+get('/review', 'views/review/review.php');
 get('/admin', 'views/admin/admin.php');
 get('/admin/items', 'views/admin/itemsData/itemsData.php');
 get('/admin/stores', 'views/admin/storesData/storesData.php');
@@ -38,6 +39,7 @@ get('/api/profile/scoreHistory', 'api/profile/scoreHistory.php');
 get('/api/profile/dealsHistory', 'api/profile/dealsHistory/dealsHistory.php');
 get('/api/profile/reviewsHistory', 'api/profile/reviewsHistory/reviewsHistory.php');
 get('/api/submit/items','api/submit/items.php');
+get('/api/review/offerDetails', 'api/review/offerDetails.php');
 get('/api/getUserType', 'api/getUserType.php');
 
 // Dynamic GET. Example with 1 variable
@@ -91,9 +93,9 @@ post('/api/admin/stores/upload', 'api/admin/upload.php');
 post('/api/profile/details/verify', 'api/profile/details/verify.php');
 post('/api/profile/details/change', 'api/profile/details/change.php');
 post('/api/submit/submit','api/submit/submit.php');
+post('/api/review/offerReview', 'api/review/offerReview.php');
+post('/api/review/updateStock', 'api/review/updateStock.php');
 post('/api/map/deleteOffer','api/map/deleteOffer.php');
-
-
 
 // ##################################################
 // ##################################################

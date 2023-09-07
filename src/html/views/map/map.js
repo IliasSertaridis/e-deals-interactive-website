@@ -206,6 +206,7 @@ function addConvenienceStoreData(convenience_store_data) {
 
 function loadStoreOffers(store_id, addReview) {
     var results;
+    var id = store_id;
     $.ajax({ 
         url: "/api/getUserType",
         type: "GET",
@@ -222,7 +223,7 @@ function loadStoreOffers(store_id, addReview) {
                 success: function(data) {
                     var response = JSON.parse(data);
                     if(addReview) {
-                        results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th><th>Review</th>`;
+                        results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
                         if(user_type.user_type === 'administrator') {
                             results += `<th>Delete</th>`;
                         }
@@ -239,15 +240,17 @@ function loadStoreOffers(store_id, addReview) {
                             <td>${response[element].dislikes}</td>
                             <td>${response[element].in_stock}</td>
                             <td>${response[element].hot_daily}</td>
-                            <td>${response[element].hot_weekly}</td>
-                            <td><button type="button" class="btn btn-primary">Review</button></td>`;
+                            <td>${response[element].hot_weekly}</td>`;
                             if(user_type.user_type === 'administrator')
                             {
                                 results += `<td><button type="button" class="btn btn-primary" onclick="deleteOffer('${response[element].offer_id}')">Delete</button></td>`
                             }
                             results += `</tr>`;
                         }
-                        results += `</table>`;
+                        results += `</table>
+                        <div class="text-center">
+                        <button type="button" class="btn btn-primary" onclick="review(${id})">Review Offers</button>
+                        </div> <br>`;
                     }
                     else {
                         results = `<table class="table table-striped"><tr><th>Name</th><th>Price</th><th>Registered</th><th>Expires</th><th>Likes</th><th>Dislikes</th><th>In Stock</th><th>Hot Daily</th><th>Hot Weekly</th>`;
@@ -293,8 +296,8 @@ function addDealStoresData(deal_store_data) {
             iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
             popupAnchor:  [0, -30] // point from which the popup should open relative to the iconAnchor
         })
-        if(calculateDistance(feature.geometry.coordinates[1], feature.geometry.coordinates[0]) < 50.0) {
-        //if(true) {
+        //if(calculateDistance(feature.geometry.coordinates[1], feature.geometry.coordinates[0]) < 50.0) {
+        if(true) {
             return L.marker(latlng, {icon: deals_icon}).bindPopup("<h4 class=\"text-center h4\">" + feature.properties.name + "</h4>" + loadStoreOffers(feature.properties.store_id,true) + "<div class=\"text-center\"><button class=\"btn btn-primary\" id=\"filterButton\" text-center onclick=\"submit(" + feature.properties.store_id + ",'" + feature.properties.name + "')\">Submit New Offer</button></div>", {
                 maxWidth:1000
             });
@@ -353,6 +356,10 @@ function deleteOffer(offer_id) {
             showAlert("Offer deleted! Refresh page to update page", "success");
         }
     })
+}
+
+function review(store_id){
+    window.location.href = "/review?store_id=" + store_id;
 }
 
 function calculateDistance(storelat,storelng) {
