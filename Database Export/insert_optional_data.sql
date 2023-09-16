@@ -1483,13 +1483,8 @@ INSERT INTO `price` (`item_name`, `date`, `price`) VALUES
 ('Μίσκο Μακαρόνια Ν6 500γρ',	'2023-07-31',	1.01),
 ('Μίσκο Μακαρόνια Ν6 500γρ',	'2023-08-01',	1.02),
 ('Μίσκο Μακαρόνια Ν6 500γρ',	'2023-08-02',	1.00),
-('Μίσκο Μακαρόνια Ν6 500γρ',	'2023-08-03',	0.99);
-
-INSERT INTO offer VALUES 
-(null, 1, 1, 0.5, '2023-08-14', '2023-08-21', 0, 0, true, 'george@gmail.com', 'George'),
-(null, 1, 2, 0.5, '2023-08-14', '2023-08-21', 0, 0, true, 'george@gmail.com', 'George'),
-(null, 1, 3, 0.5, '2023-08-14', '2023-08-21', 0, 0, true, 'george@gmail.com', 'George');
-
+('Μίσκο Μακαρόνια Ν6 500γρ',	'2023-08-03',	0.99),
+('Κύκνος Τομάτες Αποφλ Ολoκλ 400γρ', DATE_SUB(CURRENT_DATE, INTERVAL 1 week), 2.0);
 
 ALTER TABLE offer AUTO_INCREMENT = 1;
 
@@ -1505,7 +1500,7 @@ INSERT INTO offer (`store_id`,`item_id`,`price`,`registration_date`,`expiration_
 (2,9,1.0,DATE_SUB(CURRENT_DATE, INTERVAL 1 day),DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'george@gmail.com', 'George'),
 (2,10,2.0,DATE_SUB(CURRENT_DATE, INTERVAL 2 day),DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'george@gmail.com', 'George'),
 (2,11,2.0,DATE_SUB(CURRENT_DATE, INTERVAL 2 day),DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'george@gmail.com', 'George'),
-(3,10,1.0,CURRENT_DATE,DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'nikos@gmail.com', 'Nikos'),
+(3,12,1.0,CURRENT_DATE,DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'nikos@gmail.com', 'Nikos'),
 (3,20,1.0,CURRENT_DATE,DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'nikos@gmail.com', 'Nikos'),
 (3,30,1.0,CURRENT_DATE,DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'nikos@gmail.com', 'Nikos'),
 (3,40,1.0,CURRENT_DATE,DATE_ADD(CURRENT_DATE, INTERVAL 1 week), 0, 0, true, 'nikos@gmail.com', 'Nikos'),

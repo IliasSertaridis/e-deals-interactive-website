@@ -85,12 +85,13 @@ categoriesQuery = $.ajax({
 originalDiscountQuery = $.ajax({
     url: '/api/admin/statistics/discount',
     type: "GET",
-    data: {category:"Τρόφιμα"},
     dataType: 'json',
     fail: function() {
         showAlert("Failed to connect to database", 'danger');
     },
     success: function(response) {
+        discountLabels = [];
+        discountData = [];
         for(day of response) {
             discountLabels.push(day.date);
             discountData.push(day.mean_discount);
@@ -158,6 +159,8 @@ function selectCategory(category) {
                 $('#categoriesButton').html(category);
                 $('#subcategories-div').removeAttr('hidden');
                 $('#defaultCategoryText').attr('hidden','true');
+                discountLabels = [];
+                discountData = [];
                 for(day of response) {
                     discountLabels.push(day.date);
                     discountData.push(day.mean_discount);
@@ -189,6 +192,8 @@ function selectSubcategory(subcategory) {
         success: function(response) {
             if (response.length !== 0) {
                 $('#subcategoriesButton').html(subcategory);
+                discountLabels = [];
+                discountData = [];
                 for(day of response) {
                     discountLabels.push(day.date);
                     discountData.push(day.mean_discount);

@@ -14,11 +14,11 @@ function getQuery($type, $search)
             $where = "WHERE b.subcategory = '" . $search . "'";
             break;
         default:
-            $where = "WHERE b.subcategory = 'Οδοντόβουρτσες'";
+            $where = "WHERE b.subcategory = 'Χυμός τομάτας'";
     }
-    return "SELECT a.registration_date AS date, AVG((b.average_weekly_price - a.price) * 100) AS mean_discount FROM
+    return "SELECT a.registration_date AS date, AVG((b.average_weekly_price - a.price) * -100) AS mean_discount FROM
 (
-    SELECT item.item_id, item.name, offer.price, offer.registration_date, CONCAT(YEAR(offer.registration_date), '/', WEEK(offer.registration_date)) AS registration_week, category.name as category, subcategory.name as subcategory
+    SELECT item.item_id, item.name, price.price, offer.registration_date, CONCAT(YEAR(offer.registration_date), '/', WEEK(offer.registration_date)) AS registration_week, category.name as category, subcategory.name as subcategory
     FROM offer
     INNER JOIN item ON offer.item_id = item.item_id
     INNER JOIN price ON item.name = price.item_name
