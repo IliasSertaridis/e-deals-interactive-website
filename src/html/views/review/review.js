@@ -70,17 +70,6 @@ function displayOffers(store_id) {
 
 }
 
-function imageExists(image_url){
-
-    var http = new XMLHttpRequest();
-
-    http.open('HEAD', image_url, false);
-    http.send();
-
-    return http.status != 404;
-
-}
-
 function productDetails(name){
     clearDiv('offers');
     console.log(name);
@@ -118,19 +107,9 @@ function productDetails(name){
                 </tr>`;
             }
             results += `</table>`;
-            let text = response[element].name;
-            let icon_name = text.replaceAll(" ","_");
-            console.log(icon_name);
-            let icon_url = `views/icons/` + icon_name + `.jpg`;
-            console.log(icon_url);
-            /*$.get(icon_url)
-                .done(function(icon_url) { 
-                    results += `<img src="${icon_url}" class="img-fluid" alt="Responsive image">`;
-                }).fail(function() { 
-                    results += `<img src="views/icons/404.jpg" class="img-fluid" alt="Responsive image">`;
-            });*/
-            if(imageExists(icon_url)){
-                results += `<img src="${icon_url}" class="img-fluid" alt="Responsive image">`;
+            console.log(response[element].photo);
+            if(response[element].photo !== null){
+                results += `<img src="views/icons/${response[element].photo}.jpg" class="img-fluid" alt="Responsive image">`;
             } else {
                 results += `<img src="views/icons/404.jpg" class="img-fluid" alt="Responsive image">`;
             }
@@ -153,7 +132,6 @@ function productDetails(name){
             <button class="btn btn-primary" id="searchButton" onclick="updateStock('${response[element].offer_id}')">Update Stock</button>
             </div>`;
             detailsElem.innerHTML = results;
-            console.log(results);
         }
            
     });
